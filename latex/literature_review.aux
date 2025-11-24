@@ -120,27 +120,83 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2}Computational Resources}{34}{subsubsection.4.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.3}Reproducibility}{35}{subsubsection.4.6.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Summary}{35}{subsection.4.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{36}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results and Analysis}{36}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Experimental Setup}{36}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Exploratory Data Analysis}{36}{subsection.5.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Historical Closing Price of AAPL (2010-2025)}}{36}{figure.4}\protected@file@percent }
-\newlabel{fig:eda_close}{{4}{36}{Historical Closing Price of AAPL (2010-2025)}{figure.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Model Performance Evaluation}{36}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Statistical Models}{36}{subsubsection.5.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Machine Learning Models}{37}{subsubsection.5.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Deep Learning Models}{37}{subsubsection.5.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}Hybrid Model Performance}{37}{subsubsection.5.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Hybrid Model (SARIMA + XGBoost) Prediction vs Actual}}{37}{figure.5}\protected@file@percent }
-\newlabel{fig:hybrid_results}{{5}{37}{Hybrid Model (SARIMA + XGBoost) Prediction vs Actual}{figure.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Comparative Analysis}{37}{subsection.5.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Performance Comparison of All Models}}{38}{table.4}\protected@file@percent }
-\newlabel{tab:model_comparison}{{4}{38}{Performance Comparison of All Models}{table.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Discussion}{38}{subsection.5.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Comparison of Predicted Prices by Different Models}}{39}{figure.6}\protected@file@percent }
-\newlabel{fig:model_comparison}{{6}{39}{Comparison of Predicted Prices by Different Models}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Data Characteristics}{36}{subsubsection.5.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Train-Test Split Methodology}{36}{subsubsection.5.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Evaluation Metrics}{36}{subsubsection.5.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Exploratory Data Analysis}{37}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Historical Price Trends}{38}{subsubsection.5.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Historical Closing Price of AAPL (2010-2025)}}{38}{figure.4}\protected@file@percent }
+\newlabel{fig:eda_close}{{4}{38}{Historical Closing Price of AAPL (2010-2025)}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Trading Volume Patterns}{38}{subsubsection.5.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Historical Trading Volume Analysis}}{39}{figure.5}\protected@file@percent }
+\newlabel{fig:eda_volume}{{5}{39}{Historical Trading Volume Analysis}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Price Distribution and Statistical Properties}{39}{subsubsection.5.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Distribution of Closing Prices}}{39}{figure.6}\protected@file@percent }
+\newlabel{fig:price_dist}{{6}{39}{Distribution of Closing Prices}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Feature Correlation Analysis}{40}{subsubsection.5.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Correlation Heatmap of Price Features}}{40}{figure.7}\protected@file@percent }
+\newlabel{fig:corr_basic}{{7}{40}{Correlation Heatmap of Price Features}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.5}Return Analysis}{40}{subsubsection.5.2.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Daily Return Distribution}}{41}{figure.8}\protected@file@percent }
+\newlabel{fig:returns_dist}{{8}{41}{Daily Return Distribution}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.6}Volatility Clustering}{41}{subsubsection.5.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.7}Comprehensive Feature Correlation Matrix}{41}{subsubsection.5.2.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Rolling Volatility Analysis (30-day window)}}{42}{figure.9}\protected@file@percent }
+\newlabel{fig:volatility}{{9}{42}{Rolling Volatility Analysis (30-day window)}{figure.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.8}Summary of EDA Findings}{42}{subsubsection.5.2.8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Extended Correlation Matrix Including Engineered Features}}{43}{figure.10}\protected@file@percent }
+\newlabel{fig:corr_extended}{{10}{43}{Extended Correlation Matrix Including Engineered Features}{figure.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Baseline Statistical Models}{43}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}ARIMA Model Performance}{43}{subsubsection.5.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}SARIMA Model Performance}{44}{subsubsection.5.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Machine Learning Models}{45}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.1}Linear Regression}{45}{subsubsection.5.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.2}Random Forest}{46}{subsubsection.5.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.4.3}XGBoost (Standalone)}{47}{subsubsection.5.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Deep Learning Models}{49}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.1}Univariate LSTM}{49}{subsubsection.5.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Univariate LSTM Training and Validation Loss Curves}}{50}{figure.11}\protected@file@percent }
+\newlabel{fig:lstm_training}{{11}{50}{Univariate LSTM Training and Validation Loss Curves}{figure.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Univariate LSTM: Predicted vs Actual Prices}}{51}{figure.12}\protected@file@percent }
+\newlabel{fig:lstm_predictions}{{12}{51}{Univariate LSTM: Predicted vs Actual Prices}{figure.12}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.5.2}Multivariate BiLSTM + Attention}{52}{subsubsection.5.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces BiLSTM + Attention: Training History}}{54}{figure.13}\protected@file@percent }
+\newlabel{fig:bilstm_training}{{13}{54}{BiLSTM + Attention: Training History}{figure.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces BiLSTM + Attention: Predicted vs Actual Prices}}{54}{figure.14}\protected@file@percent }
+\newlabel{fig:bilstm_predictions}{{14}{54}{BiLSTM + Attention: Predicted vs Actual Prices}{figure.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Comparison of LSTM Architectures}}{55}{table.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Hybrid Model: SARIMA + XGBoost}{56}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.1}Methodology and Architecture}{56}{subsubsection.5.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.2}Implementation Details}{57}{subsubsection.5.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.3}Performance Results}{58}{subsubsection.5.6.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Hybrid Model (SARIMA + XGBoost): Predicted vs Actual Prices}}{58}{figure.15}\protected@file@percent }
+\newlabel{fig:hybrid_results}{{15}{58}{Hybrid Model (SARIMA + XGBoost): Predicted vs Actual Prices}{figure.15}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.4}Error Decomposition Analysis}{59}{subsubsection.5.6.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Hybrid Model Component Analysis (*RMSE of residual predictions)}}{59}{table.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.6.5}Practical Interpretation}{60}{subsubsection.5.6.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Extended Performance Comparison of All Models}}{61}{table.6}\protected@file@percent }
+\newlabel{tab:model_comparison_extended}{{6}{61}{Extended Performance Comparison of All Models}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Comprehensive Model Comparison}{61}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.1}Quantitative Performance Summary}{61}{subsubsection.5.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.2}Model Category Analysis}{61}{subsubsection.5.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.3}Performance Tier Classification}{62}{subsubsection.5.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Discussion}{63}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.1}Key Findings and Insights}{63}{subsubsection.5.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.2}Model-Specific Deep Dive}{64}{subsubsection.5.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.3}Practical Implications}{65}{subsubsection.5.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.4}Limitations and Challenges}{66}{subsubsection.5.8.4}\protected@file@percent }
+\citation{machinefailure2024}
+\citation{eda2023}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.5}Alignment with Literature}{68}{subsubsection.5.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.8.6}Future Research Directions}{69}{subsubsection.5.8.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Conclusion}{70}{subsection.5.9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Comparison of Predicted Prices by All Models}}{71}{figure.16}\protected@file@percent }
+\newlabel{fig:model_comparison_all}{{16}{71}{Comparison of Predicted Prices by All Models}{figure.16}{}}
 \bibstyle{ieeetr}
 \bibdata{references}
 \bibcite{supermarket2025}{1}
 \bibcite{machinefailure2024}{2}
 \bibcite{eda2023}{3}
-\gdef \@abspage@last{49}
+\gdef \@abspage@last{82}
