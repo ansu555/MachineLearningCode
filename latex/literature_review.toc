@@ -84,18 +84,19 @@
 \contentsline {section}{\numberline {5}Results and Analysis}{36}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Experimental Setup}{36}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Exploratory Data Analysis}{36}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Model Performance Evaluation}{36}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Statistical Models}{36}{subsubsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3}Model Performance Evaluation}{37}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Statistical Models}{37}{subsubsection.5.3.1}%
 \contentsline {subsubsection}{\numberline {5.3.2}Machine Learning Models}{37}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}Deep Learning Models}{37}{subsubsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.4}Hybrid Model: SARIMA + XGBoost}{37}{subsection.5.4}%
-\contentsline {subsubsection}{\numberline {5.4.1}Methodology}{37}{subsubsection.5.4.1}%
-\contentsline {subsubsection}{\numberline {5.4.2}Performance Results}{38}{subsubsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.5}Comprehensive Comparison}{38}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Discussion}{38}{subsection.5.6}%
-\contentsline {subsubsection}{\numberline {5.6.1}Key Findings}{38}{subsubsection.5.6.1}%
-\contentsline {subsubsection}{\numberline {5.6.2}Practical Implications}{39}{subsubsection.5.6.2}%
-\contentsline {subsubsection}{\numberline {5.6.3}Limitations}{39}{subsubsection.5.6.3}%
-\contentsline {subsubsection}{\numberline {5.6.4}Literature Alignment}{40}{subsubsection.5.6.4}%
-\contentsline {subsubsection}{\numberline {5.6.5}Future Directions}{40}{subsubsection.5.6.5}%
-\contentsline {subsection}{\numberline {5.7}Conclusion}{41}{subsection.5.7}%
+\contentsline {subsubsection}{\numberline {5.3.3}Deep Learning Models}{38}{subsubsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.4}Hybrid Model: SARIMA + XGBoost}{38}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Theoretical Foundation and Methodology}{38}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Implementation Configuration}{39}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Performance Results}{40}{subsubsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.5}Comprehensive Comparison}{40}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Discussion}{40}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}Key Findings and Implications}{40}{subsubsection.5.6.1}%
+\contentsline {subsubsection}{\numberline {5.6.2}Practical Implications}{42}{subsubsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.3}Limitations and Caveats}{43}{subsubsection.5.6.3}%
+\contentsline {subsubsection}{\numberline {5.6.4}Literature Alignment}{43}{subsubsection.5.6.4}%
+\contentsline {subsubsection}{\numberline {5.6.5}Future Research Directions}{43}{subsubsection.5.6.5}%
+\contentsline {subsection}{\numberline {5.7}Conclusion}{44}{subsection.5.7}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.11.7)  24 NOV 2025 11:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/Homebrew) (preloaded format=pdflatex 2025.11.7)  24 NOV 2025 11:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -951,7 +951,7 @@ Package hyperref Info: Link coloring OFF on input line 63.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<pdfs/extract_text copy.png, id=413, 381.425pt x 117.43875pt>
+<pdfs/extract_text copy.png, id=417, 381.425pt x 117.43875pt>
 File: pdfs/extract_text copy.png Graphic file (type png)
 <use pdfs/extract_text copy.png>
 Package pdftex.def Info: pdfs/extract_text copy.png  used on input line 73.
@@ -1635,65 +1635,86 @@ Overfull \hbox (23.71696pt too wide) in paragraph at lines 1453--1454
 [34]
 
 [35] (./chapter5_results.tex
-<images/results/Stock_Price_Prediction_Data_Visualization_img_0.png, id=850, 72
+<images/results/Stock_Price_Prediction_Data_Visualization_img_0.png, id=855, 72
 6.3135pt x 395.3169pt>
 File: images/results/Stock_Price_Prediction_Data_Visualization_img_0.png Graphi
 c file (type png)
 <use images/results/Stock_Price_Prediction_Data_Visualization_img_0.png>
 Package pdftex.def Info: images/results/Stock_Price_Prediction_Data_Visualizati
-on_img_0.png  used on input line 11.
+on_img_0.png  used on input line 26.
 (pdftex.def)             Requested size: 386.95897pt x 210.6208pt.
+<images/results/Stock_Price_Prediction_Data_Visualization_img_3.png, id=857, 72
+6.3135pt x 395.3169pt>
+File: images/results/Stock_Price_Prediction_Data_Visualization_img_3.png Graphi
+c file (type png)
+<use images/results/Stock_Price_Prediction_Data_Visualization_img_3.png>
+Package pdftex.def Info: images/results/Stock_Price_Prediction_Data_Visualizati
+on_img_3.png  used on input line 35.
+(pdftex.def)             Requested size: 362.77264pt x 197.45287pt.
 
-Overfull \hbox (5.21808pt too wide) in paragraph at lines 28--29
-\OT1/cmr/bx/n/12 Linear Re-gres-sion \OT1/cmr/m/n/12 achieved sur-pris-ingly st
-rong per-for-mance (RMSE: 2.92, $\OML/cmm/m/it/12 R[]$\OT1/cmr/m/n/12 : 0.9913)
- through
- []
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 [36
 
  <./images/results/Stock_Price_Prediction_Data_Visualization_img_0.png>]
+Overfull \hbox (5.98471pt too wide) in paragraph at lines 50--51
+[]\OT1/cmr/bx/n/12 SARIMA \OT1/cmr/m/n/12 con-fig-u-ra-tion: $(0\OML/cmm/m/it/1
+2 ; \OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0) \OMS/cmsy/m/n/12 ^^B
+ \OT1/cmr/m/n/12 (0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 ; \OT1/
+cmr/m/n/12 0)[]$ with sea-sonal pe-riod = 5 trad-ing days. Achieved
+ []
+
+
+
+[37 <./images/results/Stock_Price_Prediction_Data_Visualization_img_3.png>]
 <images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_7.png,
- id=858, 859.2903pt x 426.393pt>
+ id=873, 859.2903pt x 426.393pt>
 File: images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_7
 .png Graphic file (type png)
 <use images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_7.
 png>
 Package pdftex.def Info: images/results/Stock_Price_Prediction_Forecasting(Next
-_Day's_Price)_img_7.png  used on input line 36.
+_Day's_Price)_img_7.png  used on input line 91.
 (pdftex.def)             Requested size: 386.95897pt x 192.0117pt.
 
 
-[37 <./images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[38]
+
+[39 <./images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_
 7.png>]
 <images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_9.png,
- id=868, 1003.8303pt x 426.393pt>
+ id=889, 1003.8303pt x 426.393pt>
 File: images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_9
 .png Graphic file (type png)
 <use images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_9.
 png>
 Package pdftex.def Info: images/results/Stock_Price_Prediction_Forecasting(Next
-_Day's_Price)_img_9.png  used on input line 69.
+_Day's_Price)_img_9.png  used on input line 152.
 (pdftex.def)             Requested size: 411.14528pt x 174.64008pt.
-LaTeX Font Info:    Trying to load font information for OML+cmr on input line 8
-7.
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1
+70.
 
 (/opt/homebrew/Cellar/texlive/20250308_2/share/texmf-dist/tex/latex/base/omlcmr
 .fd
 File: omlcmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 87.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 170.
 <images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_10.png
-, id=870, 1076.1003pt x 1148.3703pt>
+, id=891, 1076.1003pt x 1148.3703pt>
 File: images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_1
 0.png Graphic file (type png)
 <use images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_10
 .png>
 Package pdftex.def Info: images/results/Stock_Price_Prediction_Forecasting(Next
-_Day's_Price)_img_10.png  used on input line 98.
+_Day's_Price)_img_10.png  used on input line 181.
 (pdftex.def)             Requested size: 435.32422pt x 464.56175pt.
 
 
@@ -1701,23 +1722,25 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[38 <./images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_
+[40 <./images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_
 9.png>]
 
-[39]
+[41]
 
-[40 <./images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_
+[42 <./images/results/Stock_Price_Prediction_Forecasting(Next_Day's_Price)_img_
 10.png>]
-Overfull \hbox (16.77296pt too wide) in paragraph at lines 149--150
+
+[43]
+Overfull \hbox (16.77296pt too wide) in paragraph at lines 275--276
 \OT1/cmr/m/n/12 This com-pre-hen-sive eval-u-a-tion demon-strates that hy-brid 
 SARIMA+XGBoost ar-chi-tec-ture achieves
  []
 
 )
 
-[41] (./literature_review.bbl)
+[44] (./literature_review.bbl)
 
-[42
+[45
 
 ] (./literature_review.aux)
  ***********
@@ -1725,14 +1748,14 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `literature_review.out' has not changed.
-(rerunfilecheck)             Checksum: E399C853935954AB2A351AE815579231;19353.
+(rerunfilecheck)             Checksum: 4E583BF8F715585CAF9575CD4E873B13;19914.
  ) 
 Here is how much of TeX's memory you used:
- 24995 strings out of 473190
- 493038 string characters out of 5704335
- 891857 words of memory out of 5000000
- 47558 multiletter control sequences out of 15000+600000
- 572826 words of font info for 93 fonts, out of 8000000 for 9000
+ 25014 strings out of 473190
+ 493728 string characters out of 5704335
+ 890907 words of memory out of 5000000
+ 47570 multiletter control sequences out of 15000+600000
+ 573123 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,20n,87p,868b,842s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/
@@ -1760,11 +1783,12 @@ e1/public/amsfonts/cm/cmti12.pfb></opt/homebrew/Cellar/texlive/20250308_2/share
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></opt/homebrew/Cellar/tex
 live/20250308_2/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 ></opt/homebrew/Cellar/texlive/20250308_2/share/texmf-dist/fonts/type1/public/c
-m-super/sfrm1200.pfb>
-Output written on literature_review.pdf (51 pages, 973308 bytes).
+m-super/sfrm1200.pfb></opt/homebrew/Cellar/texlive/20250308_2/share/texmf-dist/
+fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on literature_review.pdf (54 pages, 1035736 bytes).
 PDF statistics:
- 1044 PDF objects out of 1200 (max. 8388607)
- 931 compressed objects within 10 object streams
- 259 named destinations out of 1000 (max. 500000)
- 846 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1074 PDF objects out of 1200 (max. 8388607)
+ 954 compressed objects within 10 object streams
+ 265 named destinations out of 1000 (max. 500000)
+ 859 words of extra memory for PDF output out of 10000 (max. 10000000)
 
