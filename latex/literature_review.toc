@@ -95,8 +95,8 @@
 \contentsline {subsection}{\numberline {5.5}Comprehensive Comparison}{40}{subsection.5.5}%
 \contentsline {subsection}{\numberline {5.6}Discussion}{40}{subsection.5.6}%
 \contentsline {subsubsection}{\numberline {5.6.1}Key Findings and Implications}{40}{subsubsection.5.6.1}%
-\contentsline {subsubsection}{\numberline {5.6.2}Practical Implications}{42}{subsubsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.2}Practical Implications}{43}{subsubsection.5.6.2}%
 \contentsline {subsubsection}{\numberline {5.6.3}Limitations and Caveats}{43}{subsubsection.5.6.3}%
 \contentsline {subsubsection}{\numberline {5.6.4}Literature Alignment}{43}{subsubsection.5.6.4}%
-\contentsline {subsubsection}{\numberline {5.6.5}Future Research Directions}{43}{subsubsection.5.6.5}%
+\contentsline {subsubsection}{\numberline {5.6.5}Future Research Directions}{44}{subsubsection.5.6.5}%
 \contentsline {subsection}{\numberline {5.7}Conclusion}{44}{subsection.5.7}%

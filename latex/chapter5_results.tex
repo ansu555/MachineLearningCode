@@ -158,23 +158,40 @@ Figure \ref{fig:hybrid_results} demonstrates the hybrid model's exceptional fit,
 
 \subsection{Comprehensive Comparison}
 
+
 \begin{table}[htbp]
 \centering
-\caption{Performance Comparison of All Models}
+\caption{Comprehensive Performance Comparison of All Models}
 \label{tab:model_comparison_compact}
-\begin{tabular}{@{}lcccc@{}}
+\small
+\begin{tabular}{@{}lrrrr@{}}
 \toprule
-\textbf{Model} & \textbf{RMSE} & \textbf{$R^2$} & \textbf{Dir. Acc.} & \textbf{Train Time} \\ \midrule
-ARIMA & 32.52 & -0.0868 & ~52\% & 1-2 min \\
-SARIMA & 3.24 & 0.9891 & ~78\% & 2-3 min \\
-Linear Regression & 2.92 & 0.9913 & ~80\% & \textless 1 min \\
-Random Forest & 27.79 & 0.2064 & ~55\% & 3-4 min \\
-XGBoost & 27.13 & 0.2435 & ~57\% & 3-5 min \\
-Univariate LSTM & 4.52 & 0.9792 & ~75\% & 10-15 min \\
-BiLSTM + Attention & 4.28 & 0.9722 & ~77\% & 15-20 min \\
-\textbf{Hybrid (SARIMA+XGB)} & \textbf{1.28} & \textbf{0.9983} & \textbf{~87\%} & \textbf{~5 min} \\ \bottomrule
+\textbf{Model} & \textbf{RMSE} $\downarrow$ & \textbf{$R^2$} $\uparrow$ & \textbf{Dir. Acc.} $\uparrow$ & \textbf{Train Time} \\ 
+\midrule
+\multicolumn{5}{l}{\textit{Statistical Models}} \\
+\quad ARIMA & 32.52 & $-0.09$ & 52\% & 1--2 min \\
+\quad SARIMA & 3.24 & 0.99 & 78\% & 2--3 min \\
+\midrule
+\multicolumn{5}{l}{\textit{Machine Learning Models}} \\
+\quad Linear Regression & 2.92 & 0.99 & 80\% & $<$1 min \\
+\quad Random Forest & 27.79 & 0.21 & 55\% & 3--4 min \\
+\quad XGBoost & 27.13 & 0.24 & 57\% & 3--5 min \\
+\midrule
+\multicolumn{5}{l}{\textit{Deep Learning Models}} \\
+\quad Univariate LSTM & 4.52 & 0.98 & 75\% & 10--15 min \\
+\quad BiLSTM + Attention & 4.28 & 0.97 & 77\% & 15--20 min \\
+\midrule
+\multicolumn{5}{l}{\textit{Hybrid Approach}} \\
+\quad \textbf{SARIMA + XGBoost} & \textbf{1.28} & \textbf{0.998} & \textbf{87\%} & \textbf{$\sim$5 min} \\
+\bottomrule
 \end{tabular}
+\vspace{0.2cm}
+
+\raggedright
+\small
+\textit{Note}: $\downarrow$ indicates lower is better; $\uparrow$ indicates higher is better. Best performance in each metric shown in bold.
 \end{table}
+
 
 \begin{figure}[h]
     \centering
