@@ -1,0 +1,1480 @@
+Hybrid Stock Price Prediction Models
+A Comprehensive Literature Review
+Submitted by
+Anik Das
+Agnirudra Banerjee
+Mohor Mukherjee
+Bibhas Roy
+Submitted in partial fulfillment of the requirements for the degree of
+Bachelor of Technology
+in
+Computer Science and Engineering
+Sister Nivedita University
+Newtown, Kolkata, West Bengal
+2025
+Hybrid Stock Price Prediction Models
+Project Submitted in Partial Fulfillment of the Requirements for the Degree of
+Bachelor of Technology (CSE)
+Name Reg. Number Email ID
+Agnirudra Banerjee 2211200010029 agnirudrabanerjee777@gmail.com
+Bibhas Roy 2211200010001 abc.3gbibhas@gmail.com
+Mohor Mukherjee 2211200010010 MOHARMUKHERJEE2004@gmail.com
+Anik Das 2211200010038 anik200365@gmail.com
+Submission Date:21-November, 2025
+Under the supervision of
+Dr. Soma Datta
+Assistant Professor
+Department of Computer Science
+Sister Nivedita University, Newtown
+Kolkata, West Bengal
+Sister Nivedita University
+Newtown, Kolkata, West Bengal
+November, 2025
+Hybrid Stock Price Prediction Modelsi
+DECLARATION
+We hereby declare that the project work entitled“Hybrid Stock Price Prediction Models”
+submitted to the Department of Computer Science, Sister Nivedita University, is a record of
+an original work done by us under the supervision ofDr. Soma Datta, Assistant Professor,
+Department of Computer Science, Sister Nivedita University.
+This project work is submitted in partial fulfillment of the requirements for the award of the
+degree ofBachelor of Technology in Computer Science and Engineering. The results
+embodied in this report have not been submitted to any other University or Institute for the
+award of any degree or diploma.
+...................................................... ......................................................
+Agnirudra Banerjee Bibhas Roy
+...................................................... ......................................................
+Mohor Mukherjee Anik Das
+Place:Kolkata
+Date:November, 2025
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Modelsii
+CERTIFICATE
+This is to certify that the project report entitled“Hybrid Stock Price Prediction Models”
+submitted by:
+Agnirudra Banerjee(Reg. No: 2211200010029)
+Bibhas Roy(Reg. No: 2211200010001)
+Mohor Mukherjee(Reg. No: 2211200010010)
+Anik Das(Reg. No: 2211200010038)
+in partial fulfillment of the requirements for the award of the degree ofBachelor of Technol-
+ogy in Computer Science and Engineeringof Sister Nivedita University, is a bona fide
+record of the work carried out under my supervision and guidance.
+Dr. Soma Datta
+Assistant Professor
+Department of Computer Science
+Sister Nivedita University, Newtown, Kolkata
+Department of Computer Science, Sister Nivedita University
+Contents
+iii
+Hybrid Stock Price Prediction Modelsiv
+ACKNOWLEDGEMENT
+We would like to express our deep sense of gratitude and profound respect to our supervisor,Dr.
+Soma Datta, Assistant Professor, Department of Computer Science, Sister Nivedita Univer-
+sity, for her valuable guidance, constant encouragement, and constructive criticism throughout
+the course of this project work. Her expertise and insight have been invaluable in shaping our
+understanding of the subject.
+We are also grateful to theDepartment of Computer ScienceandSister Nivedita Uni-
+versityfor providing us with the necessary facilities and an environment conducive to learning
+and research.
+Finally, we would like to thank our families and friends for their unwavering support and
+encouragement during this endeavor.
+...................................................... ......................................................
+Agnirudra Banerjee Bibhas Roy
+...................................................... ......................................................
+Mohor Mukherjee Anik Das
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Modelsv
+ABSTRACT
+The prediction of stock market prices is a challenging task due to the non-linear, volatile, and
+dynamic nature of financial time series data. Traditional statistical models like ARIMA have
+limitations in capturing non-linear patterns, while deep learning models like LSTM excel at
+sequential data but may struggle with noise. This literature review comprehensively explores
+the evolution of stock prediction methodologies, with a specific focus onHybrid Modelsthat
+combine the strengths of multiple approaches (e.g., ARIMA-LSTM, CNN-LSTM).
+We analyze various hybrid architectures, comparing their mechanisms, strengths, and limita-
+tions. The review highlights how hybrid models consistently outperform standalone models
+by effectively handling both linear and non-linear components, as well as incorporating di-
+verse data sources such as technical indicators and macroeconomic variables. Furthermore, this
+document identifies critical research gaps in current methodologies, particularly regarding the
+integration of multimodal data (text and images), the lack of adaptive learning mechanisms
+for regime shifts, and the absence of robust risk-aware prediction frameworks. These identified
+gaps lay the foundation for future research and the development of more robust and accurate
+stock prediction systems.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models1
+1 Introduction
+1.1 Context of the Study
+The stock market is a part of the financial system. The stock market shows how the economy
+is doing and moves money to where it’s needed. I find that predicting the stock market is hard.
+The stock market moves, in ways that’re complex have swings and do not follow a straight
+line. The stock market data is a time series that can change quickly. The stock prices move
+fast because the stock prices are affected by things. The stock prices react to how a company
+performs, to numbers to world events to market mood and, to investor behavior.
+Traditional statistical models have been used for decades to forecast stock prices. Traditional
+statistical models often have trouble, with market shifts, regime changes and non-linear patterns
+in the data. The rise of machine learning and deep learning gives researchers tools to study the
+patterns. Machine learning and deep learning can handle patterns that traditional statistical
+models miss. I have seen that modern computational techniques can learn from amounts of
+data. Modern computational techniques can find relationships that’re hard to see with analysis
+or with classical statistical methods. When modern computational techniques look at years of
+data modern computational techniques can spot connections that no one would notice by just
+looking at the numbers or, by using traditional statistical models.
+1.2 Objectives
+This literature review aims to:
+•Examine the evolution of stock prediction methodologies from traditional statistical ap-
+proaches to modern hybrid deep learning models.
+•Analyze the specific contributions of ARIMA, LSTM, BiLSTM, and hybrid architectures
+in the context of financial forecasting.
+•Identify the limitations and research gaps in existing systems.
+•Establish the foundation for developing an improved hybrid prediction model.
+1.3 Scope and Organization
+The review consists of three distinct sections which follow each other in order. The second
+chapter of this review provides an extensive review of traditional methods and deep learning
+approaches and advanced hybrid architectures. The third chapter identifies essential problems
+and missing information which prove the need for improved hybrid forecasting systems to
+forecast stock market performance.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models2
+2 Literature Review
+2.1 Introduction to Literature Survey
+Stock price prediction has evolved through technological progress during the last fifty years
+because computational intelligence combined with financial market analysis. The combina-
+tion of statistical modeling with machine learning algorithms and deep learning architectures
+allows developers to create advanced forecasting systems at unprecedented levels. The tra-
+ditional methods based on linear assumptions and stationary conditions failed to detect the
+intricate financial market patterns. The current data-driven learning system detects patterns
+automatically through its own processes without needing human-made feature development.
+The review investigates current stock price prediction methods which include statistical
+approaches and machine learning methods and deep learning systems and hybrid prediction
+systems. The research follows the development of stock price prediction from initial random
+walk theories to present-day transformer-based and multimodal prediction systems.
+2.2 Historical Approaches
+Stock prediction methods have undergone substantial development since the 1960s through
+successive periods which brought fundamental changes to modeling strategies.
+2.2.1 Evolution of Stock Prediction Methods
+Table 1: Historical Evolution of Stock Prediction Methods
+Era Dominant Method Key Improvement
+1960s–1980s Random walk, moving averages Basic trend and noise understanding
+1990s–2000s ARIMA, GARCH Strong statistical forecasting
+2010–2015 ML models (SVM, RF) Non-linear learning
+2015–2020 LSTM, GRU, CNN Long-sequence learning
+2020–Present Transformers, GNN, RL Context-aware, long-range, multimodal
+prediction
+2.2.2 From Early Statistical Tools to Advanced Time-Series Models
+The first stage of stock prediction needed me to use fundamental concepts which included ran-
+dom walk theory and basic moving average calculations. The trading methods helped traders
+find market directions yet they did not work for detecting intricate market patterns and unan-
+ticipated price fluctuations. The efficient market hypothesis ruled this period by stating that
+stock prices behave randomly and investors lack ability to forecast market movements.
+The following period brought better results through the implementation of ARIMA and
+GARCH models which served as structured mathematical frameworks. The new methods de-
+livered better statistical power which allowed researchers to study market patterns and seasonal
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models3
+market behavior and volatility changes through systematic approaches that earlier tools failed
+to provide. The market transition from random behavior to statistical pattern detection oc-
+curred during this period.
+2.2.3 From ARIMA/GARCH to Machine Learning Models
+The models ARIMA and GARCH proved useful but they required data to follow linear patterns.
+Real market behavior shows complex non-linear patterns because multiple variables create
+intricate relationships which linear models fail to detect.
+Machine learning models advanced the field by learning non-linear data relationships directly
+from the input information. The prediction models SVM and Random Forest and boosting
+algorithms detected multiple feature relationships between price and volume and technical
+indicators. The models achieved superior prediction results than statistical methods because
+they identified complex patterns between features through automated processes that did not
+need predefined mathematical models.
+2.2.4 From Machine Learning to Deep Learning
+Machine learning models were effective, and their main limitation was that it was ineffective
+in the comprehension of sequences across long periods of time. However, stock prices are
+determined by trends that are carried out over days, weeks or even months. ML algorithms in
+the past kept the time points independent, necessitating the need to manually feature engineer
+time-varying variables.
+This was enhanced with deep learning through sequence-based models, such as RNNs,
+LSTMs, and GRUs. These models were able to store long term dependencies, and to learn
+directly using raw price sequences without extensive feature engineering. The CNN-based
+time-series models introduced the capability of identifying short-term local trends like volatil-
+ity clusters and momentum shifts. They combined automatic feature learning with time-varying
+modeling together, which formed a more robust base than the classical methods of machine
+learning.
+2.2.5 From Deep Learning to Modern Transformer and Advanced Models
+LSTMs and RNNs were also not efficient with very long sequences, slow to train, and informa-
+tion decayed over time because of the sequential nature of the processing.
+The next major improvement was introduced with the help of transformers that made use of
+attention mechanisms. Transformers do not read data sequentially and instead consider all the
+time points at the same time and determine which ones are the most important. This enables
+them to work with long sequences more efficiently, parallelize more quickly, and offer a more
+interpretable representation with attention weight visualization.
+Graph Neural Networks (GNNs) made another step forward and attempted to model the
+effects of stocks on each other- industry correlations, supply chain relationships and market
+contagion effect, previously absent in other models. Reinforcement learning took the field a
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models4
+step further by changing the focus of simple forecasting to complete decision making, trading
+strategies optimized not only by predicting prices.
+Lastly, the latest icyte of price data with news, social media, and market sentiment is called
+multimodal models, which enables the system to learn on several kinds of information rather
+than historical price. This holistic theory appreciates that markets are motivated by the flow
+of information over various channels.
+2.3 Existing Systems / Related Work
+2.3.1 Traditional Statistical Methods
+The earliest methods of stock price prediction were based mainly on statistical time-series
+model. These approaches have formed the basis of time-dependent dependence and stochastic
+processes in financial data.
+ARIMA Models:The AutoRegressive Integrated Moving Average (ARIMA) model has
+been a staple in time-series forecasting since the 1970s. The model is valued for its ability
+to capture linear trends, seasonality, and autocorrelation structures in data. As demonstrated
+by [?] in retail analytics, ARIMA effectively predicts consumer demand and optimizes inventory
+management. The model is mathematically expressed as:
+ϕ(B)(1−B) dyt =θ(B)ϵ t (1)
+whereBrepresents the backward shift operator,ddenotes the degree of differencing required
+to achieve stationarity,ϕ(B) represents the autoregressive polynomial, andθ(B) represents the
+moving average polynomial [?].
+The study by [?] demonstrates ARIMA’s capability in identifying “temporal shopping be-
+haviors” and “restocking trends” after weekends. In the context of stock prediction, this trans-
+lates to detecting cyclic trading patterns, mean-reversion tendencies, and seasonal effects in
+stock prices. The model’s strength lies in its interpretability and solid theoretical foundation
+rooted in econometric theory.
+However, ARIMA’s fundamental limitation is its linear assumption. As noted in [?], the
+model requires careful “differencing” to handle non-stationary data—a characteristic shared by
+volatile stock indices. When financial markets experience regime changes, structural breaks, or
+extreme volatility, ARIMA’s linear framework becomes inadequate. The model cannot capture
+non-linear interactions between features, sudden jumps in prices, or complex dependencies that
+characterize modern financial markets.
+GARCH Models:Generalized AutoRegressive Conditional Heteroskedasticity (GARCH)
+models are an addition to ARIMA that deal with volatility clustering, i.e. the period of high
+volatility is succeeded by a period of high volatility, and the period of low volatility is followed by
+a period of low volatility. Although the ARIMA is a model of the conditional mean of the series,
+GARCH is a model of the conditional variance as it is especially applied in risk management
+and option pricing. But, similar to ARIMA, GARCH has parametric assumptions and is poor
+at extreme market regimes.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models5
+2.3.2 Machine Learning Approaches
+Machine learning brought a big change in comparison to the traditional statistics algorithms
+with this feature of non-linear modelling with no rigid distributional assumptions.
+Support Vector Machines (SVM):SVM became popular in stock prediction because
+it has the ability to establish the best decision boundaries in high dimensional feature spaces.
+Through kernel functions, the data can implicitly be mapped by SVM to higher dimensions
+where linear separation can be done. This can help in the capture of non-linear relationships
+between the technical indicator, fundamental factor and price movement.
+Random Forests and Ensemble Methods:Gradient boosting algorithms (XGBoost,
+LightGBM) and random forests proved to be highly effective with the combination of vari-
+ous decision trees. XGBoost Classifier was superior to other conventional machine learning
+algorithms in predictive maintenance machines as shown in the article by [?]. These ensemble
+techniques are ideal in dealing with mixed data types, dealing with missing values, and rank
+ranking the features of importance- features that can prove useful in stock prediction when the
+features are continuous price data to discrete market regime indicators.
+The weakness of these machine learning models is that they do not have the capability to
+discern temporal sequence naturally. Stock prices are based on trends over days, weeks, or even
+months, yet conventional ML algorithms consider them separately, unless lagged features are
+manually added. This involves massive feature engineering and domain knowledge.
+2.3.3 Deep Learning-Based Approaches
+Deep learning has effectively changed the concept of stock prediction by making it possible to
+automatically learn hierarchical representations on raw sequential data.
+Recurrent Neural Networks (RNN) and Long Short-Term Memory (LSTM):
+RNNs brought about the idea of hidden states which store information on a time basis. Nev-
+ertheless, conventional RNNs experience vanishing as well as exploding gradient issues in the
+context of long sequences. Hochreiter and Schmidhuber proposed LSTM networks which over-
+come this limitation by using complex gating mechanisms.
+A comprehensive study on predictive maintenance by [?] established that LSTM significantly
+outperforms Artificial Neural Networks (ANN), achieving an accuracy of 96.5% compared to
+ANN’s 64.9%. This dramatic improvement demonstrates LSTM’s superiority in handling “se-
+quential, time-series data with dependencies that last a long time” [?].
+The LSTM cell architecture consists of three gates:
+Forget Gate:f t =σ(W f ·[h t−1, xt] +b f ) (2)
+Input Gate:i t =σ(W i ·[h t−1, xt] +b i) (3)
+Output Gate:o t =σ(W o ·[h t−1, xt] +b o) (4)
+These gates allow the network to selectively forget other irrelevant information, update its
+memory with other information, and generate outputs according to filtered memory states. This
+ability is essential in stock prediction where price fluctuations are modulated by the historical
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models6
+trends in various time scales, including intraday trends and patterns of several months long.
+Importantly, [?] notes that “increasing layers in ANN model could not help in improving
+accuracy” compared to LSTM. This serves as a cautionary insight for financial modeling: simply
+adding depth without the temporal memory mechanisms of LSTM is often futile. The paper
+also demonstrates that LSTM can effectively “identify trends and produce forecasts” when
+combined with anomaly detectors—a strategy directly applicable to detecting market crashes
+or sudden regime shifts analogous to machine “failures.”
+Bidirectional LSTM (BiLSTM):BiLSTM builds on LSTM by working with sequences
+in either direction and enables the network to simultaneously capture both future and past
+contexts. This implies that in stock prediction, the model can be trained using the trends
+before and after a given point in time, and thus provide more accurate reversals and changes
+in trends.
+Gated Recurrent Units (GRU):GRU offers a simpler version of LSTM that utilizes a
+single update gate that combines both forget and input gates. GRU is computationally simpler
+to use; however, it tends to have similar performance on most financial forecasting problems to
+LSTM.
+2.3.4 Advanced Neural Network Architectures
+Convolutional Neural Networks (CNN) for Time Series:Although it was initially used
+to process images, 1D-CNNs have been found to be useful in time-series data by identifying
+temporal patterns in the neighborhood. The convolutional filters employed in CNNs extract
+characteristics like peaks, dips as well as clusters of short-term volatility. The sequences are
+processed by the architecture as:
+yk =
+K−1X
+j=0
+wj ·x t−j +b(5)
+where the convolution windowKcaptures neighborhood information.
+Attention Mechanisms and Transformers:Transformer architectures, introduced through
+the “Attention Is All You Need” paper, revolutionized sequence modeling by replacing recur-
+rence with self-attention mechanisms. The attention mechanism computes:
+Attention(Q, K, V) = softmax
+QKT
+√dk
+
+V(6)
+Transformers analyze all time points simultaneously, as opposed to LSTMs that process the
+sequence step-by-step, and learn the historical periods that are most applicable to prediction.
+This makes very long sequences easier to handle, enables parallel training to run much more
+quickly, and the visualization of attention weights enables much better interpretability.
+Graph Neural Networks (GNN):GNNs model the relationship between stocks, the
+effect of companies in the same industry or supply chain on each other. GNNs can spread
+information throughout the network structure to learn patterns across the sector and have
+correlation dynamics since they represent stocks as nodes, and relationships as edges.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models7
+2.4 Hybrid Architectures
+The hybrid model came about after it was realized that financial markets cannot be viewed
+under one lens. Stock prices are the result of the linear behavior, non-linear behavior, market
+noise, market shocks, and sentiment-based behavior. The complexity of the market cannot be
+fully captured using either traditional statistical tools or pure deep learning ones.
+2.4.1 ARIMA-LSTM Hybrid Models
+The combination of ARIMA and LSTM networks is one of the first and the most powerful
+hybrid structures. The reasoning behind this is simple, ARIMA is the best at reflecting linear
+autocorrelation structures and LSTM is the best at non-linear residual patterns.
+The modeling pipeline typically follows:
+1. ARIMA predicts the linear component: ˆy ARIMA
+t
+2. Compute residuals:r t =y t −ˆyARIMA
+t
+3. LSTM learns the residual component: ˆrLSTM
+t
+4. Final prediction: ˆyt = ˆyARIMA
+t + ˆrLSTM
+t
+The decomposition can usually result in more solid and understandable forecasts. The
+ARIMA component will give a baseline trend and LSTM will record deviations in a complex
+manner than the baseline trend.
+2.4.2 CNN-LSTM Hybrid Models
+Another widely studied direction combines Convolutional Neural Networks (CNNs) with LSTMs.
+A pivotal study by [?] explores this architecture in the context of biomedical signal process-
+ing, comparing a “Raw signal and LSTM-1D CNN” approach against a “Spectrogram and 2D
+CNN” method for artifact detection in electrodermal activity signals.
+The study yields a profound insight directly applicable to financial data representation:
+the 1D-CNN model applied to raw signals outperformed the 2D-CNN applied to
+visual spectrograms (Kappa 0.49 vs 0.42)[?]. The authors attribute this to the fact that
+“CNNs base their knowledge on the local information,” which was better preserved in the raw
+1D signal than in the global structure of the spectrogram.
+This finding challenges a common trend in financial machine learning where stock price
+charts are converted into images for computer vision models. Instead, the research suggests
+that a hybrid model using1D-CNNs to extract local volatility features from raw price
+series, coupled with LSTM for temporal trend analysis, represents a superior ar-
+chitectural choice.
+The specific configuration validated in [?]—using a kernel size of 5×5 and dropout of
+0.05—provides a robust blueprint. The architecture demonstrated the best performance with:
+•TPR (True Positive Rate): 0.65
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models8
+•Kappa: 0.49
+•AUC: 0.76
+After post-processing to merge artifacts separated by under 2 seconds (analogous to smooth-
+ing in financial data), performance improved to TPR of 0.72 and Kappa of 0.50 [?].
+For stock prediction, the CNN component extracts local features such as:
+•Short-term price momentum patterns
+•Intraday volatility clusters
+•Support and resistance level formations
+The LSTM component then models how these extracted features evolve through time, cap-
+turing:
+•Multi-day trend persistence
+•Volume-price relationships over time
+•Regime transitions from bullish to bearish markets
+2.4.3 Attention-Enhanced Hybrid Models
+Contemporary hybrid architectures use attention mechanisms to enable the model to concen-
+trate on the best historical periods which are significant. The most typical implementation is
+based on CNN or LSTM blocks to extract initial features and then Transformer blocks:
+CNN/LSTM→Features→Transformer→Prediction (7)
+Instead of the traditional approach to predicting future prices (directly learning to pre-
+dict future price) the attention mechanism is trained to predict future price by considering
+previous time steps that are most predictive which gives better predictive accuracy and more
+interpretable attention weights.
+2.4.4 Multimodal Hybrid Models
+The most recent advancement involves integrating multiple data sources:
+•Numerical: Historical prices, trading volumes, technical indicators
+•Textual: Financial news, earnings reports, social media sentiment
+•Graph-based: Inter-stock correlations, sector relationships
+These models involve the encoding of each modality into separate encoding pathways and
+then combination of the representations to make final prediction. As an example, the BERT or
+GPT models work with text, the GNN with graph structures, and CNN-LSTM with time-series,
+and all the outputs are fused using attention-based layers.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models9
+2.4.5 Feature-Level Hybridization
+Hybridization at the feature level is not necessarily paired-off with architecture. The modern
+forecasting systems tend to combine various types of features:
+•Technical Indicators: MACD, RSI, Bollinger Bands, moving averages
+•Volatility Measures: VIX, GARCH-based volatility estimates
+•Macroeconomic Signals: Inflation rates, interest rates, GDP growth
+•Sector-Level Dependencies: Industry performance indices, supply chain relationships
+The system is taught to learn relationships, which cannot be detected solely by price, to
+the given richer feature set in the model. It is particularly helpful in the emerging markets
+where the stock movement is more affected by macroeconomic announcements compared to the
+developed ones.
+2.5 Comparative Analysis of Hybrid Models
+Understanding the trade-offs between different hybrid architectures is crucial for selecting the
+appropriate model for specific forecasting tasks. Table??provides a comprehensive comparison
+of major hybrid approaches.
+2.5.1 Why Hybrid Models Represent the Future
+Hybrid models are becoming increasingly important for several fundamental reasons:
+1. Financial Data is Multi-Scale:Short-term noise, medium-term trends, and long-
+term cycles all exist simultaneously in financial markets. A single model architecture rarely
+captures all three timescales effectively. Hybrid models can assign different components to
+handle different temporal resolutions.
+2. Markets are Influenced by Many Types of Signals:Price, volume, news, senti-
+ment, global indices, and sector relationships all play roles in price formation. Hybrid models
+are naturally suited to merge these diverse information sources through multi-modal learning
+architectures.
+3. Market Behavior is Partly Linear and Partly Chaotic:Linear components
+(trends, seasonality) are efficiently handled by statistical models like ARIMA, whereas chaotic
+and non-linear dependencies (sudden jumps, regime changes) require deep learning architec-
+tures. Hybrid models leverage both paradigms.
+4. Hybrid Models Reduce Risk of Model Bias:When one component fails under
+specific market conditions, other components can compensate. This ensemble-like behavior
+builds robustness during volatile events or structural breaks.
+5. Theoretical Justification—Error Decomposition:If the true data-generating pro-
+cess follows:
+yt =L t +N t +ϵ t (8)
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models10
+Table 2: Comprehensive Comparison of Hybrid Models
+Hybrid
+Model
+Components
+Used
+Key Strengths Limitations Best Use-
+Case
+ARIMA +
+LSTM
+ARIMA (lin-
+ear), LSTM
+(non-linear)
+Separates linear
+and non-linear
+behavior; good
+stability; inter-
+pretable
+Struggles dur-
+ing sudden
+market shifts;
+limited long-
+range memory
+Medium-term
+forecasting;
+markets with
+clear trend
++ seasonal
+patterns
+CNN + LSTM CNN (local
+pattern extrac-
+tion), LSTM
+(sequential
+modeling)
+Captures short-
+term patterns +
+long-term depen-
+dencies; strong
+on high-frequency
+data
+Sensitive to
+noise; heavy
+tuning re-
+quired
+High-
+frequency
+trading, intra-
+day patterns
+CNN + GRU CNN (feature
+extraction),
+GRU (simpli-
+fied RNN)
+Faster than
+CNN-LSTM,
+fewer parameters,
+easier to train
+Slightly less
+expressive
+than LSTM
+Fast inference
+or low-resource
+environments
+Bi-LSTM +
+Attention
+Bi-LSTM
+(bidirectional
+memory), At-
+tention (focus
+on important
+time points)
+Captures forward
++ backward con-
+text; highlights
+important events
+Higher train-
+ing cost; still
+sequential
+Medium-
+sequence
+forecasting
+with strong
+context
+LSTM +
+Transformer
+LSTM (local
+sequence),
+Transformer
+(long-range
+dependencies)
+Balances sequen-
+tial learning with
+global attention;
+strong generaliza-
+tion
+Computationally
+heavy; requires
+large datasets
+Long-horizon
+forecasting;
+markets with
+irregular pat-
+terns
+CNN + LSTM
++ Transformer
+CNN (lo-
+cal), LSTM
+(temporal),
+Transformer
+(global atten-
+tion)
+Strongest hybrid;
+captures all three
+market scales
+(micro, medium,
+macro)
+High com-
+plexity; may
+overfit without
+strong regular-
+ization
+Most modern,
+most accu-
+rate general-
+purpose hybrid
+Price + Senti-
+ment Model
+LSTM/Transformer
+for numerical
+data, Text
+encoder for
+sentiment
+Uses both tech-
+nical signals and
+market sentiment;
+responds to news
+Hard to align
+sentiment tim-
+ing with price
+reaction
+Event-driven
+forecasting,
+earnings an-
+nouncements
+Feature-Level
+Hybrids
+Technical in-
+dicators +
+macro data
++ volatility
+metrics
+Models broader
+market environ-
+ment; reduces
+reliance on price
+alone
+Requires care-
+ful feature
+engineering;
+prone to re-
+dundancy
+Multi-factor
+forecasting;
+cross-market
+analysis
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models11
+whereL t represents linear structure,N t represents non-linear behavior, andϵ t represents noise,
+no single model can perfectly learn bothL t andN t simultaneously. Hybrid architectures allow:
+•ARIMA→learnsL t
+•LSTM/CNN→learnsN t
+•Transformer→learns long-range dependencies across both
+This decomposition creates a more complete representation of the underlying data gener-
+ation process. In most recent studies (2021–2024), hybrid CNN–LSTM–Transformer models
+have consistently outperformed single-model approaches in accuracy, stability, and robustness
+across diverse market conditions.
+2.6 Limitations of Existing Systems
+2.6.1 Statistical Model Constraints
+Linearity Assumptions:As noted in the ARIMA analysis [?], statistical models require
+strict stationarity achieved through differencing. This often results in the loss of valuable long-
+term trend information. In highly volatile stock markets characterized by regime changes and
+structural breaks, the linear framework becomes fundamentally inadequate.
+Feature Independence:Traditional models like ARIMA assume independence of ex-
+planatory variables when extended to multivariate forms (VARIMA, VAR). In reality, stock
+market features exhibit complex interactions—volume changes affect momentum, which influ-
+ences volatility, creating feedback loops that linear models cannot capture.
+2.6.2 Machine Learning Limitations
+Temporal Ignorance:As highlighted earlier, classical ML algorithms (SVM, Random For-
+est, XGBoost) treat each time point independently unless manually provided with engineered
+lagged features. This requires extensive domain expertise and may miss complex temporal
+dependencies.
+Inadequacy of Single Deep Learning Models:As evidenced by [?], while LSTM
+outperforms ANN (96.5% vs 64.9% accuracy), reliance on a single architecture limits the model’s
+ability to capture both local feature variations and global trends simultaneously. Pure LSTM
+models may struggle with:
+•Very long sequences leading to gradient degradation
+•Inability to capture multi-scale temporal patterns efficiently
+•Lack of explicit mechanisms for feature extraction at different resolutions
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models12
+2.6.3 Feature Representation Challenges
+Data Representation Fallacy:A major gap exists in how financial data is encoded for
+neural networks. The finding by [?] that 1D-CNNs on raw signals outperform 2D-CNNs on
+spectrograms (Kappa 0.49 vs 0.42) highlights a flaw in approaches that convert stock charts
+into images. Many systems attempt to use computer vision techniques on candlestick chart
+images, but this introduces:
+•Loss of numerical precision through image quantization
+•Artificial spatial correlations not present in the original data
+•Increased computational complexity without performance gains
+There is a clear lack of models that properly leverage 1D-CNNs for local volatility extraction
+directly from raw price sequences.
+2.6.4 Computational and Real-Time Constraints
+Deep learning models, particularly complex hybrid architectures, demand significant computa-
+tional resources. The study by [?] used early stopping with a threshold of 30 epochs and careful
+hyperparameter tuning, yet still required substantial training time. For high-frequency trading
+or real-time prediction systems, latency becomes a critical constraint that many sophisticated
+models cannot satisfy.
+2.6.5 Overfitting and Generalization Issues
+Financial markets are non-stationary—patterns that work in one market regime may fail in
+another. Models trained on historical bull markets often perform poorly during bear markets
+or crisis periods. The COVID-19 pandemic illustrated this dramatically, as many prediction
+systems trained on pre-2020 data failed catastrophically when market dynamics shifted.
+2.7 Comparative Study / Gap Analysis
+2.7.1 Method Comparison: Statistical vs. Machine Learning vs. Deep Learning
+Table 3: Comparative Analysis of Stock Prediction Approaches
+Method Linearity Temporal Complexity Interpretability
+ARIMA Linear Yes Low High
+SVM/RF Non-linear Limited Medium Medium
+LSTM Non-linear Yes High Low
+CNN-LSTM Non-linear Yes Very High Low
+Transformer Non-linear Yes Very High Medium
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models13
+2.7.2 Performance Comparison from Literature
+Based on the analyzed studies:
+•LSTM vs. ANN[?]: LSTM achieved 96.5% accuracy compared to ANN’s 64.9%,
+demonstrating the critical importance of temporal modeling mechanisms.
+•1D-CNN-LSTM vs. 2D-CNN[?]: Raw signal processing with 1D-CNN-LSTM achieved
+Kappa 0.49 vs. 0.42 for spectrogram-based 2D-CNN, highlighting the importance of
+proper data representation.
+•ARIMA applicability[?]: Effective for linear trend and seasonality detection but re-
+quires stationarity and fails under regime changes.
+2.7.3 Integration Gaps and Research Deficiencies
+Although the modern stock prediction methods have come a long way, the contemporary studies
+have a number of critical flaws that restrict the feasibility and real-world performance:
+1. Difficulty Incorporating Multiple Data Types Efficiently
+Even though numerous hybrid models purport to combine sentiment analysis, the existing
+approaches continue to encounter basic multimodal issues:
+•Pipeline Integration: Combining news, social media, macroeconomic data, and price
+data into a single coherent pipeline remains problematic. Most approaches process these
+modalities separately and perform late fusion, losing valuable inter-modal interactions.
+•Frequency Mismatch: Handling different data frequencies poses significant technical
+challenges. News and social media arrive irregularly and asynchronously, while price data
+is continuous and regular. Current architectures lack robust mechanisms for temporal
+alignment across these disparate frequencies.
+•Semantic-Temporal Alignment: Aligning textual signals (news sentiment) with time-
+series signals (price movements) is non-trivial. The time lag between news publication and
+market reaction is variable and context-dependent, and most models use naive timestamp
+matching rather than learned alignment strategies.
+2. Absence of Adaptive Learning
+Financial markets are non-stationary by nature - a model that has been trained on the data
+of the previous month may go haywire on the data of the current month because of regime
+changes, changes in policies, or even events in the world. Limitations The main limitations are:
+•Static Training Paradigm: Most hybrid models follow a train-once-deploy-forever ap-
+proach. They cannot update themselves incrementally without full retraining, making
+them vulnerable to concept drift.
+•Regime Change Blindness: Markets transition between bullish, bearish, and volatile
+regimes. Current models lack explicit mechanisms to detect regime shifts and adapt their
+behavior accordingly.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models14
+•Computational Overhead: Even when researchers acknowledge the need for adap-
+tation, the computational cost of retraining complex hybrid models (especially those
+involving Transformers or multi-modal fusion) makes continuous learning impractical for
+production systems.
+3. Lack of Risk-Aware Prediction
+The majority of hybrid models are concerned only with the direction of the prices or their
+values, but they do not take into account the uncertainty and risk of their predictions:
+•Point Predictions Only: Standard neural networks output deterministic point esti-
+mates without confidence intervals or probabilistic distributions. This makes it impossible
+for traders to assess prediction reliability.
+•No Risk Quantification: Critical risk metrics—drawdown potential, Value-at-Risk
+(VaR), conditional volatility, tail risk—are absent from model outputs. Deep learning
+architectures are not inherently designed to quantify uncertainty.
+•Architectural Complexity: Hybrid models are already complex. Adding risk pre-
+diction requires separate architectural components (e.g., Bayesian layers, dropout-based
+uncertainty estimation, or ensemble variance), further increasing training difficulty and
+computational requirements.
+•Volatility-Return Decoupling: Financial risk fundamentally depends on future volatil-
+ity, which is highly unpredictable and influenced by different factors than price move-
+ments. Very few papers attempt to jointly model volatility forecasting and price forecast-
+ing within a single hybrid architecture.
+•Evaluation Metric Bias: Most research optimizes for accuracy-based metrics (MAE,
+RMSE, directional accuracy) rather than risk-adjusted metrics (Sharpe ratio, information
+ratio, maximum drawdown). This creates a mismatch between research objectives and
+practical trading requirements.
+Summary of Critical Gaps:
+•Statistical models (ARIMA, GARCH) are well-understood but limited in capability
+•Deep learning models (LSTM, CNN) are powerful but often used in isolation
+•Hybrid approaches exist but lack standardization in architecture design
+•True multimodal integration across heterogeneous data sources remains under-developed
+•Adaptive learning mechanisms for handling concept drift are largely absent
+•Risk-aware prediction with uncertainty quantification is critically missing
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models15
+2.8 Summary of Literature Review
+2.8.1 Key Findings
+1.Evolution of Methodology: Stock prediction has progressed from simple statistical
+models (ARIMA, GARCH) through machine learning (SVM, RF) to sophisticated deep
+learning (LSTM, CNN, Transformers) and hybrid architectures.
+2.Temporal Modeling is Critical: As demonstrated by [?], models with explicit temporal
+mechanisms (LSTM) dramatically outperform those without (ANN), highlighting that
+sequence modeling is non-negotiable for financial forecasting.
+3.Proper Data Representation Matters: The insight from [?] that 1D-CNN on raw
+signals outperforms 2D-CNN on transformed representations challenges common prac-
+tices and suggests that raw time-series processing should be preferred over image-based
+approaches.
+4.Hybrid Models Show Promise: Combining complementary strengths—ARIMA’s lin-
+earity with LSTM’s non-linearity, CNN’s feature extraction with LSTM’s sequence modeling—
+consistently yields better performance than single-method approaches.
+5.Significant Gaps Remain: Issues of non-stationarity, regime changes, proper feature
+representation, computational efficiency, and multimodal integration remain largely un-
+solved.
+2.8.2 Conclusion
+The literature will have a definite advancement to the concepts of hybrid, multimodal, and
+attention-based stock prediction architecture. Nevertheless, there are still gaps in research,
+especially in:
+•Developing standardized hybrid architectures that optimally combine statistical rigor with
+deep learning flexibility
+•Creating adaptive systems that recognize and adjust to market regime changes
+•Properly leveraging 1D-CNN for local feature extraction as suggested by [?]
+•Integrating diverse data modalities (numerical, textual, graph-based) in a principled man-
+ner
+•Balancing model complexity with interpretability for practical deployment
+These loopholes inspire the necessity of better hybrid models that will resolve the mentioned
+weaknesses and expand upon the advantages of the current models.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models16
+3 Problem Identification
+3.1 Problem Statement
+Although decades of research have already been made and sophisticated machine learning
+techniques have been developed, the successful prediction of the price of stocks is an uphill
+task. The main problem is due to the specifics of financial markets, which display:
+•Non-stationarity: Statistical properties change over time due to evolving market con-
+ditions, regulatory changes, and macroeconomic shifts.
+•High dimensionality: Prices are influenced by thousands of factors including company
+fundamentals, sector trends, macroeconomic indicators, and investor sentiment.
+•Non-linearity: Relationships between variables are complex and often change based on
+market regimes.
+•High noise-to-signal ratio: Random fluctuations and speculative trading introduce
+substantial noise.
+•Extreme events: Financial crises, pandemics, and geopolitical events create outliers
+that violate assumptions of most models.
+Current strategies cannot cover these problems at the same time. The conventional statis-
+tical approaches are capable of dealing with linearity and interpretability, but fail to deal with
+complicated non-linear processes. Deep learning models do not interpret but are able to cap-
+ture non-linearity and have weaknesses in terms of regime change. Existing hybrid models are
+yet to be promising with inefficient architectural designs and inappropriate data representation
+strategies.
+3.2 Context and Background of the Problem
+The stock market is a financial feed in the economy and it is also one of the biggest ways of
+wealth creation and the distribution of the funds in the modern elective economies. These
+consequences of correct price forecasting are extensive:
+•For Investors: Better predictions enable informed decision-making, portfolio optimiza-
+tion, and risk management.
+•For Institutions: Financial institutions use predictions for algorithmic trading, hedging
+strategies, and market-making activities.
+•For Regulators: Understanding price dynamics helps in detecting market manipulation,
+maintaining stability, and formulating policies.
+•For Researchers: Stock prediction serves as a proving ground for time-series forecasting
+methods applicable to diverse domains.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models17
+With the emergence of the big data and the power of computers it has opened an oppor-
+tunity to create more complex systems of prediction. Nevertheless, the intrinsic issues which
+include non-stationarity, complexity and unpredictability remain. This is what COVID-19
+demonstrated: the majority of prediction models that had been trained on the data before the
+pandemic collapsed when the market situation radically changed in March 2020.
+3.3 Need and Importance of Solving the Problem
+3.3.1 Economic Impact
+Stock markets around the world are tens of trillions of dollars in their market capitals. Even the
+slight changes in prediction level can be converted to huge financial benefits or loss prevention.
+To institutional investors whose assets are in the billions, a 1 percent improvement in prediction
+means millions of dollars in better returns or less risk.
+3.3.2 Scientific Advancement
+Machine learning methods are challenged by prediction of stocks. Innovations in this field
+are frequently reused in other time-series problems in healthcare (patient monitoring), climate
+science (weather forecasting), energy (demand prediction) and industrial systems (predictive
+maintenance).
+3.3.3 Market Efficiency
+More precise pre predictions lead to efficiency in the market because they add up information
+faster in the prices. This lessens arbitrage possibilities, narrows bid-ask spreads and enhances
+price discovery -all to the benefit of the wider economy.
+3.3.4 Risk Management
+The effects of financial crisis on the society are devastating. The 2008 financial crisis in it-
+self caused millions of people to lose their jobs and billions in wealth destruction. Improved
+prediction and early warning mechanisms can aid in the detection of bubbles, identification of
+systemic risks and preemptive interventions.
+3.4 Scope and Project Objectives
+3.4.1 Scope
+This study aims at coming up with a better hybrid structure of predicting stock prices to
+overcome the limitations presented. The scope includes:
+•Designing a hybrid model integrating ARIMA for linear trend extraction, 1D-CNN for
+local feature detection, and LSTM for temporal sequence modeling.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models18
+•Validating the model on major stock indices and individual stocks across different market
+conditions.
+•Comparing performance against baseline models (pure ARIMA, pure LSTM, existing
+hybrids).
+•Analyzing interpretability through attention mechanisms and feature importance.
+3.4.2 Objectives
+The specific objectives are:
+1.Develop a principled hybrid architecturethat optimally combines the strengths
+of ARIMA (linear modeling), 1D-CNN (local feature extraction), and LSTM (long-term
+dependency capture).
+2.Validate the architectural insight from [?]that 1D-CNN on raw signals outperforms
+image-based approaches by applying it to financial time-series.
+3.Address the single-model limitation identified in [?]by creating a multi-component
+system that captures both local variations and global trends.
+4.Incorporate proper stationarity handlingas highlighted by ARIMA studies [?] while
+avoiding information loss through adaptive preprocessing.
+5.Evaluate robustnessacross different market conditions (bull markets, bear markets,
+high volatility periods) to ensure generalization.
+6.Balance complexity with interpretabilitythrough attention mechanisms and abla-
+tion studies that reveal component contributions.
+3.5 Anticipated Challenges
+3.5.1 Data Quality and Availability
+The quality of financial data is quite different. Whereas larger indices have clean, high-frequency
+data, smaller stocks can have gaps, errors, or only a short history. Incorrectly preprocessing
+the missing data, outliers, and differences in the temporal resolution of various features may
+be critical.
+3.5.2 Non-stationarity and Regime Changes
+Financial markets are non-stationary as they are established in the literature review. A model,
+which is trained using the data between the years 2010-2019, might not be a good predictor in
+2020 because of the regime beat by the pandemic. This is a challenge to come up with adaptive
+mechanisms or ensemble approaches that can cope with regime changes.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models19
+3.5.3 Overfitting vs. Generalization
+Due to their millions of parameters, deep learning models can readily overfit training data, at
+least when the training window has certain patterns (e.g. a long bull market). To get the
+model to generalize to the unobservable markets, careful regularization, validation schemes,
+and perhaps, the addition of domain knowledge constraints are necessary.
+3.5.4 Computational Resources
+It is computationally costly to train complex hybrid models using ARIMA feature preprocessing,
+CNN feature extraction and LSTM sequence modelling on thousands of stocks. There is an
+engineering problem between trying to strike a balance between model sophistication and the
+practical deployment (inference time, memory footprint) constraints.
+3.5.5 Evaluation Metrics
+Measures such as MAE or RMSE might not encompass utility in trading. A model that has
+greater RMSE and greatly improved the directional accuracy (at least predicting an up/down
+move correctly) can prove more useful as a trading strategy. It is necessary to determine proper
+evaluation systems to indicate the utility in the real world.
+3.5.6 Interpretability and Trust
+Financiers tend to hesitate to use black-box models in making high-stakes decisions. The
+balancing act of ensuring an interpretable performance without compromising the performance
+is a sensitive matter by incorporating attention mechanisms, feature importance analysis and
+ablation studies.
+3.5.7 Benchmark Comparison
+Comparative fairy against the current methods needs proper designing of the experiment. Vari-
+ous papers work with various datasets, time frames, and assessment procedures that complicate
+their face to face comparison. It is significant to set reproducible benchmarks in order to vali-
+date contributions.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models20
+4 Problem Methodology
+The following chapter lays out the specific way that we will predict the price of hybrid stocks.
+We report the entire pipeline of data collection to feature engineering and development to model
+and assessment, and give a detailed blueprint of our implementation.
+4.1 System Architecture Overview
+The stock prediction system is based on the alayered architecture and incorporates the tradi-
+tional statistical techniques, machine learning algorithms, and deep learning models to identify
+both the linear and non-linear tendencies of stock prices. Figure??in the appendix depicts
+the entire system architecture of data flow starting with raw stock data up to preprocessing,
+feature engineering, model training, and prediction output.
+The architecture consists of six primary components:
+1.Data Source: Historical S&P 500 stock data from Yahoo Finance API
+2.Data Collection & Preprocessing: Data cleaning, missing value handling, and train-
+test splitting
+3.Feature Engineering: Creation of technical indicators, temporal features, and lag vari-
+ables
+4.Model Development: Implementation of multiple prediction models (SARIMA, Prophet,
+XGBoost, BiLSTM+Attention)
+5.Hybrid Ensemble: Combination of SARIMA for trend capture and XGBoost for resid-
+ual learning
+6.Prediction Output: Price forecasts with model comparison and evaluation metrics
+Such a multi-model strategy enables us to use the advantages of each methodology and
+counterbalance the weakness of the other.
+4.2 Data Collection and Preprocessing
+4.2.1 Data Source and Characteristics
+We utilize theyfinancePython library to retrieve historical stock data for S&P 500 constituent
+companies. For each stock, we collect:
+•OHLCV Data: Open, High, Low, Close prices, and trading Volume
+•Temporal Range: Multi-year historical data to capture various market conditions
+•Frequency: Daily stock prices with timestamps
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models21
+S&P 500
+Stock Data
+(CSV File)
+Data Load-
+ing & Filtering
+Extract AAPL
+stock
+Filter by ticker
+Data Cleaning
+Missing values
+Outlier detection
+Normalization
+Feature Engineering
+Technical indicators
+Lag features (1,2,3)
+Temporal features
+SARIMA
+Model
+Prophet
+Model
+XGBoost
+Model
+BiLSTM+
+Attention
+Hybrid Ensemble
+(SARIMA
++ XGBoost)
+Stock Price
+Predictions
+Figure 1: Complete System Architecture for Hybrid Stock Prediction
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models22
+The raw data has the following major attributes:
+•Date: Trading date (index)
+•Open: Opening price for the trading day
+•High: Highest price during the trading day
+•Low: Lowest price during the trading day
+•Close: Closing price (primary target variable)
+•Volume: Number of shares traded
+•Adj Close: Adjusted closing price accounting for corporate actions
+4.2.2 Data Cleaning
+There are some vital steps that our data preprocessing pipeline realizes:
+Missing Value Handling:There is a high chance of missing data in financial time-series
+data because of market holidays, suspension of trading, or data collection mistakes. We employ:
+•Forward Fill: For single-day gaps, propagate the last available value
+•Interpolation: For multi-day gaps, apply linear interpolation to maintain smooth tran-
+sitions
+•Removal: Discard stocks with excessive missing data (>5% of total observations)
+Outlier Detection and Treatment:Radical price changes may cause model training to
+be inaccurate. We implement:
+Outlier =|x t −µ|>3σ(9)
+whereµrepresents the rolling mean andσrepresents the rolling standard deviation over a
+20-day window.
+Normalization:In order to achieve a numerically stable model convergence we use Min-
+Max scaling:
+xscaled = x−x min
+xmax −x min
+(10)
+4.2.3 Train-Test Split
+We use a temporal split strategy in order to preserve the sequence of time-series information:
+•Training Set: First 80% of the chronological data
+•Testing Set: Final 20% for out-of-sample evaluation
+•Validation: Time-series cross-validation with expanding window
+This will eliminate data leakage and allow realistic evaluation which is a realistic represen-
+tation of actual trading situations where the future data is unknown.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models23
+4.3 Feature Engineering
+The so-called feature engineering is where the domain knowledge is coded to the model. The
+features we implement generate three classes of features that profiled various facets of marketing
+behavior.
+4.3.1 Technical Indicators
+Technical analysis indicators are used to measure momentum, trend, volatility and volume.
+Some of the indicators that we apply are as follows with the help of the Python library of
+technical analysis:
+1. Moving Average Convergence Divergence (MACD):
+MACD = EMA12(Close)−EMA 26(Close) (11)
+Signal Line = EMA9(MACD) (12)
+MACD Histogram = MACD−Signal Line (13)
+MACD shows the direction of the trend and momentum through comparisons of the short-
+term average and the long-term average which are exponential moving averages.
+2. Relative Strength Index (RSI):
+RSI = 100− 100
+1 + Avg Gain14
+Avg Loss14
+(14)
+RSI is a momentum scale ranging between 0 and 100, where scores of above 70 signal
+overbought markets and those of below 30 signal oversold markets.
+3. Bollinger Bands:
+Middle Band = SMA20(Close) (15)
+Upper Band = Middle Band + 2×σ 20 (16)
+Lower Band = Middle Band−2×σ 20 (17)
+Bollinger Bands are used to gauge the price volatility based on the 20 days moving average.
+4. Simple Moving Averages (SMA):
+SMAn = 1
+n
+n−1X
+i=0
+Closet−i (18)
+We calculate SMAs for multiple windows (n= 5,10,20,50,200) to capture different trend
+timescales.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models24
+5. Exponential Moving Average (EMA):
+EMAt =α·Close t + (1−α)·EMA t−1 (19)
+whereα= 2
+n+ 1 (20)
+EMA also places more emphasis on the current prices; hence it is more sensitive to new
+information than SMA.
+Additional Technical Indicators:
+•Stochastic Oscillator: Measures momentum by comparing closing price to price range
+•Average True Range (ATR): Quantifies volatility
+•On-Balance Volume (OBV): Cumulative volume indicator for price trend confirmation
+•Commodity Channel Index (CCI): Identifies cyclical trends
+4.3.2 Temporal Features
+There are high calendar effects in market behavior. We derive time characteristics to reflect
+such patterns:
+•Day of Week: One-hot encoded (Monday=0, ..., Friday=4)
+•Month: One-hot encoded (January=1, ..., December=12)
+•Quarter: Business quarters (Q1, Q2, Q3, Q4)
+•Is Month End: Binary indicator for month-end trading effects
+•Is Quarter End: Binary indicator for quarter-end rebalancing
+These features enable models to learn the “January effect,” “weekend effect,” and other
+calendar-based anomalies documented in financial literature.
+4.3.3 Lag Features
+Time-series prediction is based on autoregressive trends. The lag features are formed based on
+the closing price:
+Lagk = Closet−k fork∈ {1,2,3,5,10}(21)
+Such characteristics enable machine learning reasons to explicitly express temporal depen-
+dencies without necessitating recurrent designs.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models25
+4.3.4 Feature Selection and Dimensionality
+Once we have feature engineered, we have about 25-30 features in our data. In order to avoid
+multicollinearity and overfitting:
+•Correlation Analysis: Remove features with correlation>0.95
+•Feature Importance: Use XGBoost feature importance to identify top predictive fea-
+tures
+•Domain Filtering: Retain features with established financial theory support
+4.4 Model Development
+There are five types of prediction models that we apply and each of them reflects various
+features of the stock prices dynamics.
+4.4.1 SARIMA Model
+Model Overview:Seasonal AutoRegressive Integrated Moving Average (SARIMA) extends
+ARIMA by explicitly modeling seasonal patterns. The model is specified as SARIMA(p, d, q)×
+(P, D, Q)s where:
+•(p, d, q): Non-seasonal AR order, differencing, MA order
+•(P, D, Q): Seasonal AR order, differencing, MA order
+•s: Seasonality period (e.g., 5 for weekly patterns in daily data)
+Mathematical Formulation:
+ϕp(B)ΦP (Bs)(1−B) d(1−B s)Dyt =θ q(B)ΘQ(Bs)ϵt (22)
+where:
+•B: Backward shift operator (B kyt =y t−k)
+•ϕ p(B): Non-seasonal AR polynomial
+•Φ P (Bs): Seasonal AR polynomial
+•θ q(B): Non-seasonal MA polynomial
+•Θ Q(Bs): Seasonal MA polynomial
+•ϵ t: White noise error term
+Implementation Details:We use thepmdarimalibrary’sauto arimafunction for auto-
+mated parameter selection:
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models26
+•Order Selection: Auto-ARIMA searches over parameter space to minimize AIC/BIC
+•Stationarity Testing: Augmented Dickey-Fuller test for unit roots
+•Seasonality Detection: Automatic identification of seasonal patterns
+•Final Configuration: SARIMA(0,1,0)×(0,0,0) [5] (identified by auto-fitting)
+Training Process:
+1. Test for stationarity using ADF test
+2. Apply differencing if necessary to achieve stationarity
+3. Fit SARIMA model using maximum likelihood estimation
+4. Validate residuals for white noise properties (Ljung-Box test)
+5. Generate forecasts for test period
+4.4.2 Prophet Model
+Model Overview:Prophet, developed by Facebook (Meta), employs an additive model frame-
+work particularly suited for business time-series with strong seasonal effects and multiple trend
+changes.
+Mathematical Formulation:
+y(t) =g(t) +s(t) +h(t) +ϵ t (23)
+where:
+•g(t): Piecewise linear or logistic growth trend
+•s(t): Periodic component (daily, weekly, yearly seasonality)
+•h(t): Holiday/event effects
+•ϵ t: Idiosyncratic error term
+Trend Component:Prophet determines non-linear trends with the help of changepoint:
+g(t) = (k+a(t) T δ)t+ (m+a(t) T γ) (24)
+where the value of delta is rate changes at changepoints that are automatically identified.
+Seasonality Component:Fourier series is used to model seasonality:
+s(t) =
+NX
+n=1
+
+an cos
+2πnt
+P
+
++b n sin
+2πnt
+P
+
+(25)
+wherePis the period (365.25 for yearly, 7 for weekly).
+Implementation Details:
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models27
+•Library:fbprophetPython package
+•Changepoint Prior: 0.05 (controls flexibility of trend)
+•Seasonality Mode: Multiplicative (appropriate for percentage changes)
+•Weekly Seasonality: Enabled to capture weekday effects
+•Uncertainty Intervals: 95% prediction intervals via MCMC sampling
+4.4.3 XGBoost Model
+Model Overview:XGBoost (eXtreme Gradient Boosting) is a system that adopts optimized
+gradient boosting decision trees. Compared to other statistical models, XGBoost is able to
+automatically formulate non-linear interactions between features and can work effectively with
+mixed data types.
+Mathematical Formulation:XGBoost creates an additive regression of the weak decision
+trees learners:
+ˆyi =
+KX
+k=1
+fk(xi), f k ∈ F(26)
+whereFrepresents the space of regression trees, and each treef k is learned to minimize
+the objective:
+L(t) =
+nX
+i=1
+l(yi,ˆy(t−1)
+i +f t(xi)) + Ω(ft) (27)
+The overfitting is avoided by the regularization term:
+Ω(f) =γT+ 1
+2λ||w||2 (28)
+whereTis the number of leaves andwrepresents leaf weights.
+Implementation Details:
+•Library:xgboostPython package
+•Objective Function:reg:squarederror(regression)
+•Number of Estimators: 100 trees
+•Learning Rate: 0.1 (step size shrinkage)
+•Max Depth: 5 (maximum tree depth)
+•Subsample: 0.8 (row sampling ratio)
+•Colsample by Tree: 0.8 (column sampling ratio)
+•Early Stopping: Monitor validation RMSE with patience=10
+Feature Set:XGBoost makes use of the entire engineered set that consists of:
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models28
+•All technical indicators (MACD, RSI, Bollinger Bands, etc.)
+•Temporal features (day of week, month, quarter)
+•Lag features (1, 2, 3, 5, 10 days)
+•Volume-derived features
+Hyperparameter Optimization:We use grid search and time-series cross-validation to
+optimize hyperparameters in the search space:
+•Learning rate:{0.01,0.05,0.1,0.2}
+•Max depth:{3,5,7,10}
+•Number of estimators:{50,100,200,300}
+4.4.4 BiLSTM + Attention Model
+Model Overview:The Bidirectional Long Short-Term Memory (BiLSTM) networks are cou-
+pled with a modification of the attention process in our deep learning architecture. The archi-
+tecture offers better results than vanilla LSTMs because it takes into account the constraints
+of processing sequences in both time directions and selectively concentrating on the most in-
+formative time steps.
+Architecture Components:
+1. Input Layer:
+•Shape: (batch size,timesteps,features)
+•Configuration: (None,10,4) — 10 historical days, 4 features (Open, High, Low, Close)
+2. Bidirectional LSTM Layer:
+The BiLSTM works off of the input sequence in both directions:
+− →h t = LSTMforward(xt, − →h t−1) (29)
+← −h t = LSTMbackward(xt, ← −h t+1) (30)
+ht = [− →h t; ← −h t] (31)
+Both LSTM cells have gating mechanisms:
+ft =σ(W f ·[h t−1, xt] +b f ) (Forget gate) (32)
+it =σ(W i ·[h t−1, xt] +b i) (Input gate) (33)
+˜Ct = tanh(WC ·[h t−1, xt] +b C) (Candidate values) (34)
+Ct =f t ⊙C t−1 +i t ⊙ ˜Ct (Cell state) (35)
+ot =σ(W o ·[h t−1, xt] +b o) (Output gate) (36)
+ht =o t ⊙tanh(C t) (Hidden state) (37)
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models29
+Input Layer
+Shape: (batch, 10, 4)
+4 features per
+timestep
+Bidirectional LSTM
+(100 units
+each direction)
+Forward & Backward
+Output: 200 features
+Returns sequences
+Dropout Layer
+(Rate: 0.2)
+Prevents overfitting
+Randomly drops 20%
+Attention Mechanism
+Learns importance
+weights for timesteps
+Creates context vector
+Dense Output Layer
+(1 unit, linear)
+Maps context to
+single prediction
+Prediction
+(Next Day
+Close Price)
+Forward
+LSTM
+(→)
+Backward
+LSTM
+(←)
+Figure 2: BiLSTM with Attention Mechanism Architecture
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models30
+•Units: 100 (50 forward + 50 backward)
+•Return Sequences: True (outputs sequence for attention layer)
+•Activation:tanh(cell state),sigmoid(gates)
+3. Dropout Layer:
+•Dropout Rate: 0.2
+•Purpose: Prevent overfitting by randomly zeroing 20% of outputs
+4. Custom Attention Mechanism:
+Our layer of attention is trained to give the weight of various time steps:
+et = tanh(Wa ·h t +b a) (Attention scores) (38)
+αt = exp(et)PT
+i=1 exp(ei)
+(Normalized weights) (39)
+c=
+TX
+t=1
+αtht (Context vector) (40)
+where:
+•W a, ba: Trainable attention parameters
+•α t: Attention weights (sum to 1)
+•c: Weighted sum of hidden states (context vector)
+The attention mechanism helps the model to concentrate on important patterns (e.g. recent
+volatility spikes, trend reversals) and on less informative periods gives less weight.
+5. Dense Output Layer:
+•Units: 1 (scalar price prediction)
+•Activation: Linear (for regression)
+Model Compilation:
+•Optimizer: Adam with learning rate = 0.001
+•Loss Function: Mean Squared Error (MSE)
+•Metrics: MAE, RMSE
+Training Configuration:
+•Epochs: 50 with early stopping (patience=10)
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models31
+•Batch Size: 32
+•Validation Split: 20% of training data for validation
+•Callbacks: ModelCheckpoint (save best model), EarlyStopping, ReduceLROnPlateau
+Data Preparation for BiLSTM:We take sliding windows on the time series:
+•Sequence Length: 10 days
+•Prediction Horizon: 1 day ahead (next closing price)
+•Stride: 1 day (overlapping windows)
+For a dataset withNdays, we generateN−10 training samples, each containing 10 con-
+secutive days of features and the following day’s close price as the target.
+4.4.5 Hybrid SARIMA-XGBoost Model
+Model Overview:The hybrid model incorporates the complementary power of SARIMA and
+XGBoost with the help of a two-stage residual learning structure. SARIMA takes in linear
+trends and seasonality, and XGBoost trains the non-linear residual trends which SARIMA is
+unable to capture.
+Historical
+Stock Data
+SARIMA
+Model
+Linear
+ˆyS
+t
+Feature
+Engineering
+Residuals
+rt
+XGBoost
+Non-linear
+ˆrX
+t
+ˆyt = ˆyS
+t + ˆrX
+t
+Final
+Prediction
+Stage 1Baseline
+Stage 2Correction
+Stage 3Fusion
+Figure 3: Hybrid SARIMA-XGBoost Workflow
+Hybrid Architecture Rationale:
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models32
+Financial time series are a two sided phenomenon:
+yt =L t +N t +ϵ t (41)
+where:
+•L t: Linear component (trends, seasonality, autocorrelation)
+•N t: Non-linear component (regime shifts, volatility clustering, feature interactions)
+•ϵ t: Random noise
+SARIMA excels at modelingL t through its ARMA structure, while XGBoost capturesN t
+through its decision tree ensemble.
+Implementation Pipeline:
+Stage 1: SARIMA Baseline
+1. Train SARIMA(0,1,0)×(0,0,0) [5] on training data
+2. Generate forecasts: ˆySARIMA
+t
+3. Calculate residuals:r t =y t −ˆySARIMA
+t
+Stage 2: XGBoost Residual Modeling
+1. Engineer features from original data (lag features, technical indicators)
+2. Train XGBoost to predict residuals:r t ∼f(X t)
+3. Generate residual predictions: ˆrXGBoost
+t
+Stage 3: Hybrid Fusion
+ˆyHybrid
+t = ˆySARIMA
+t + ˆrXGBoost
+t (42)
+Mathematical Justification:
+Assuming that SARIMA is able to capture the linear component, the residual of SARIMA
+will only have the non-linear component and noise:
+rt =y t −ˆySARIMA
+t ≈N t +ϵ t (43)
+XGBoost then approximates:
+ˆrXGBoost
+t ≈N t (44)
+The hybrid prediction is the last one, it is:
+ˆyHybrid
+t ≈L t +N t (45)
+assuming ˆySARIMA
+t ≈L t.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models33
+Error Decomposition:
+The overall error in prediction may be broken down:
+ErrorHybrid =y t −ˆyHybrid
+t (46)
+= (Lt +N t +ϵ t)−( ˆLt + ˆNt) (47)
+= (Lt − ˆLt) + (Nt − ˆNt) +ϵ t (48)
+Through specialization of each component we reduce the linear and non-linear errors sepa-
+rately resulting in reduced overall error compared to single-model methods.
+Implementation Advantages:
+•Robustness: SARIMA provides stable baseline; XGBoost adds adaptive corrections
+•Interpretability: Decomposition reveals linear vs. non-linear contributions
+•Complementarity: Each model addresses the other’s weaknesses
+•Generalization: Reduces overfitting risk compared to single complex model
+4.5 Evaluation Metrics
+We use several evaluation measures to fully evaluate the performance of the models and to
+measure the various components of prediction quality.
+4.5.1 Regression Metrics
+1. Mean Absolute Error (MAE):
+MAE = 1
+n
+nX
+i=1
+|yi −ˆyi|(49)
+MAE directly translates in the same units as the variable of interest (dollars), and it is
+therefore intuitive.
+2. Root Mean Squared Error (RMSE):
+RMSE =
+vuut1
+n
+nX
+i=1
+(yi −ˆyi)2 (50)
+The squaring operation of RMSE punishes large errors more than MAE thus being sensitive
+to outliers.
+3. Mean Absolute Percentage Error (MAPE):
+MAPE = 100%
+n
+nX
+i=1
+
+yi −ˆyi
+yi
+ (51)
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models34
+MAPE has scale-free during measurement of errors, which means that it can be compared
+across stocks of varying price levels.
+4. R-squared (R 2):
+R2 = 1−
+Pn
+i=1(yi −ˆyi)2
+Pn
+i=1(yi −¯y)2 (52)
+R2 measures the percentage of variance that a model has explained, the closer it is to 1, the
+more it has been explained.
+4.5.2 Directional Accuracy
+Direction Accuracy:
+DA = 1
+n
+nX
+i=1
+⊮sign(yi−yi−1)=sign(ˆyi−yi−1) (53)
+DA is used to assess the frequency of the model giving correct predictions of the price
+direction (up/down) which can often be very useful in trading as compared to absolute price
+accuracy.
+4.5.3 Model Comparison
+We evaluate each of the five models (SARIMA, Prophet, XGBoost, BiLSTM+Attention, Hy-
+brid) in terms of the following metrics to determine:
+•Best Overall Performer: Model with lowest RMSE/MAE
+•Most Stable: Model with lowest variance across cross-validation folds
+•Best Directional: Model with highest direction accuracy
+•Computational Efficiency: Training time and prediction latency
+4.6 Implementation Details
+4.6.1 Development Environment
+The system was implemented using Python 3.8+ with core libraries includingpandasandnumpy
+for data manipulation,scikit-learnandxgboostfor machine learning,tensorflow/keras
+for deep learning, andstatsmodels/pmdarimafor statistical forecasting.
+4.6.2 Computational Resources
+Training of models was done on a conventional processor-based (Intel core i7 equivalent) envi-
+ronment. The time to train statistical models (SARIMA, Prophet) took between 1-3 minutes,
+whereas the deep learning models (BiLSTM+Attention) took between 10-20 minutes.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models35
+4.6.3 Reproducibility
+In order to be reproducible, we have used fixed random seeds of all stochastic operations,
+versioned data snapshots, and a specified dependency environment.
+4.7 Summary
+The chapter provided a complete approach to predicting hybrid stock prices which included:
+1.System Architecture: Multi-model pipeline from data collection to prediction
+2.Data Processing: Collection, cleaning, and train-test splitting strategies
+3.Feature Engineering: Technical indicators, temporal features, and lag variables
+4.Model Development: Five complementary approaches (SARIMA, Prophet, XGBoost,
+BiLSTM+Attention, Hybrid)
+5.Evaluation: Comprehensive metrics for regression and directional accuracy
+6.Implementation: Practical details for reproducibility
+The approach is an amalgamation of theoretical and practical application of the strengths of
+statistical paradigm, machine learning, and deep learning. The duality of financial time series
+is specifically resolved in the hybrid architecture, which breaks down predictions into linear and
+non-linear parts, which are addressed by specialized models.
+Department of Computer Science, Sister Nivedita University
+Hybrid Stock Price Prediction Models36
+References
+[1] A. Author and B. Others, “Machine learning approach to consumer behavior in super-
+market analytics,”Journal of Retailing and Consumer Services, 2025. Source: 1-s2.0-
+S2772662225000566-main.pdf.
+[2] D. Yadavet al., “Predicting machine failures using machine learning and deep learning
+algorithms,”Sustainable Manufacturing and Service Economics, vol. 3, p. 100029, 2024.
+Source: 1-s2.0-S2667344424000124-main.pdf.
+[3] J. Llanes-Juradoet al., “Automatic artifact recognition and correction for electrodermal
+activity based on lstm-cnn models,”Expert Systems With Applications, vol. 230, p. 120581,
+2023. Source: 1-s2.0-S0957417423010837-main.pdf.
+Department of Computer Science, Sister Nivedita University

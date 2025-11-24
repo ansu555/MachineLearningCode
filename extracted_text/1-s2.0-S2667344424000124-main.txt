@@ -1,0 +1,999 @@
+Predicting machine failures using machine learning and deep
+learning algorithms
+Devendra K. Yadav
+a , *
+, Aditya Kaushik
+b
+, Nidhi Yadav
+c
+a
+Department of Mechanical Engineering, National Institute of Technology Calicut, Kerala, India
+b
+Quantiphi Analytics Solutions Private Limited, Bangalore, India
+c
+Centre for Indian Knowledge Systems, NIT Calicut, India
+ARTICLE INFO
+Keywords:
+Machine learning
+Industry 4.0
+Deep learning
+Hyperparameter tuning
+Predictive maintenance
+ABSTRACT
+Industry 4.0 emphasizes real-time data analysis for understanding and optimizing physical processes. This study
+leverages a Predictive Maintenance Dataset from the UCI repository to predict machine failures and categorize
+them. This study covers two objectives namely, to compare the performance of machine learning algorithms in
+classifying machine failures, and to assess the effectiveness of deep learning techniques for improved prediction
+accuracy. The study explores various machine learning algorithms and finds the XG Boost Classifier to be the
+most effective among them. Long Short-Term Memory (LSTM), a deep learning algorithm, demonstrates its
+superior accuracy in predicting machine failures compared to both traditional machine learning and Artificial
+Neural Networks (ANN). The novelty of this study is the application and comparison of machine learning and
+deep learning models to an unbalanced dataset. Findings of this study hold significant implications for industrial
+management and research. The study demonstrates the effectiveness of machine learning and deep learning
+algorithms in predictive maintenance, enabling proactive maintenance interventions and resource optimization.
+1. Introduction
+To align with Industry 4.0, traditional industrial automation ap-
+proaches are evolving with the integration of new elements. The Internet
+of Things (IoT) and Cyber-Physical Systems (CPS) play crucial roles in
+enabling artificial intelligence and facilitating intelligent
+manufacturing, leading to the creation of innovative products and ser-
+vices [ 1 ]. Companies embracing this approach face increased competi-
+tion in a dynamic market environment, where simply increasing
+production capacity does not guarantee success [ 2 ]. Despite various
+interpretations of industrial challenges, incorporating domain knowl-
+edge into understandable and explainable models remains challenging
+[ 3 ]. DSS, leveraging machine learning algorithms, aids in product design
+iterations and facilitates effective policymaking, potentially enabling
+quicker recovery from failures [ 4 , 5 ]. Furthermore, leveraging vast
+amounts of data, particularly in predicting machine failures and
+scheduling maintenance, allows industries to enhance performance and
+autonomously manage product requirements [ 6 ]. However, many
+manufacturing organizations struggle to embrace data-driven strategies
+due to various challenges, particularly during the data preprocessing
+stage [ 7 ]. As data generated within Industry 4.0 proliferate, machine
+learning algorithms play a vital role in extracting insights for improved
+understanding [ 8 ]. Nowadays ML can not only be used to diagnose
+problems, but can also be used to diagnose, prognosticate, and forecast
+problems [ 9 , 10 ].
+In many instances, machines exhibit signs of deterioration and
+symptoms before they fail. Predictive maintenance (PdM) is a strategy
+used by engineers to anticipate failures before they occur, relying on
+sensor-based condition monitoring of machinery and equipment. How-
+ever, implementing PdM requires substantial data and real-time moni-
+toring, posing challenges such as latency, adaptability, and network
+bandwidth [ 11 ].
+Implementing predictive maintenance at various stages of design
+offers several benefits but also presents challenges. Advantages include
+increased productivity, reduced system faults [ 12 ], decreased un-
+planned downtime, and improved resource efficiency [ 13 ]. Predictive
+maintenance also enhances maintenance intervention planning optimi-
+zation [ 14 ]. However, managing data from multiple systems and sources
+within a facility is challenging, as is obtaining accurate data for pre-
+dictive modelling [ 15 , 16 ].
+Additionally, implementing machine learning models and artificial
+intelligence faces challenges such as collecting training data [ 17 ],
+* Corresponding author.
+E-mail address: devendrak@nitc.ac.in (D.K. Yadav).
+Contents lists available at ScienceDirect
+Sustainable Manufacturing and Service Economics
+journal homepag e: www.el sevier.com/loc ate/smse
+https://doi.org/10.1016/j.smse.2024.100029
+Received 15 December 2023; Received in revised form 30 June 2024; Accepted 29 July 2024
+Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+Available online 2 August 2024 
+2667-3444/© 2024 The Author(s). Published by Elsevier B.V. This is an open access article under the CC BY license ( http://creativecommons.org/licenses/by/4.0/ ). 
+managing dynamic environments [17], selecting suitable algorithms,
+and obtaining context-sensitive data, including working conditions [18,
+19,20]. Considering the data analytics challenges in predictive mainte-
+nance research domain, this study attempts to undertake analysis for an
+unbalance dataset of manufacturing machine available at UCI re-
+pository. Analysis of this study covers the following objectives:
+a) Develop a data-driven model for predicting machine failure
+b) Rank dataset features to improve model performance
+c) Compare results from different machine learning algorithms
+d) Optimize hyper parameters of deep learning algorithms
+e) Compare results of the best machine learning model with artificial
+neural network (ANN) and long short-term memory (LSTM) models.
+While numerous strategies exist to reduce losses from unnecessary
+maintenance tasks, there is a lack of comprehensive comparisons be-
+tween them. This study addresses this gap by demonstrating how to
+handle unbalanced datasets and draw insights from analysis. Perfor-
+mance metrics such as AUC score, accuracy, recall, precision, and others
+are compared across various machine learning algorithms and deep
+learning models to evaluate outcomes.
+The contents of this research are organized into six different sections.
+Section 2 details the in-depth literature review for understanding and
+analyzing the data analytics approached used in predictive maintenance
+domain. Section 3 discusses procedures to construct a machine learning
+model. In Section 4, this paper constructs the predictive model for the
+problem under consideration. Next, the findings about the machine
+learning models built during the study are presented in Section 5. The
+paper ends with Section 6, Conclusions and Future Work, which also
+offers a glimpse of potential managerial applications.
+2. LITERATURE review
+Maintenance can be broken down into two primary categories:
+reactive maintenance and proactive maintenance. These are the types of
+maintenance most performed in Industries. After a valued item has had a
+breakdown, the purpose of reactive maintenance is to return it to
+working order [21]. Through the utilization of preventative and pre-
+dictive maintenance procedures, the purpose of proactive maintenance
+is to forestall the occurrence of expensive repairs and the early break-
+down of assets. Corrective maintenance does not incur any upfront costs
+and does not need any prior preparation to be carried out [22]. In most
+cases, machines will experience some level of deterioration before
+finally breaking down. It is possible to monitor the trend of degradation
+to rectify any flaws that may exist before they cause any failure or the
+equipment to break down. Since machine maintenance is only carried
+out when it is necessary, this tactic results in greater levels of efficiency
+[22]. One such strategy that assists us in predicting failures before they
+take place is known as predictive maintenance (PdM). For this strategy
+to work, the asset in question needs to undergo condition monitoring,
+which employs sensor technologies to look for warning signs of deteri-
+orating performance or impending breakdown. The PdM allows for the
+decision-making process to be examined from two different vantage
+points: the diagnosis and the prognosis. According to Jeong et al. [23],
+diagnosis is the process of determining the underlying cause of a prob-
+lem, whereas prognosis is the process of estimating the likelihood that a
+failure will occur in the future [24]. Prognosis maintenance policy is
+further divided into statistical-based maintenance and condition-based
+maintenance. Industry 4.0 equipped digital model gives maintenance
+staff the ability to schedule repairs more effectively because it provides
+real-time equipment information.
+It is evident that predictive maintenance is gaining more attention
+due to the recent advancements in data collection through Industry 4.0
+technologies and data analysis capabilities using evolutionary algo-
+rithms, cloud technology, data analytics, machine learning and artificial
+intelligence. According to Ucar et al. [25] AI is the main component of
+PdM for next-step autonomy in machines, which can improve the au-
+tonomy and adaptability of machines in complex and dynamic working
+environments. It is comprehensible that predictive maintenance is get-
+ting additional consideration because of recent advancements in data
+accessibility and analytics capabilities brought on by expanding
+research into ML and AI algorithms.
+Machine learning is frequently used by researchers to anticipate
+failure and improve output. Hesser and Markert [26] used an Artificial
+Neural Network (ANN) model embedded within a CNC-milling machine
+to monitor tool wear. Models like this one can be applied to older ma-
+chinery that can be used in Industry 4.0, as well as for research purposes.
+Kamariotis et al. [27] found testing and validating AI-based PdM sys-
+tems face a challenge due to the absence of standard evaluation metrics.
+This complicates the comparison of system performance and assessment
+of accuracy and reliability. Various evaluation metrics, including pre-
+diction accuracy, mean squared error, and precision and recall, have
+been suggested by researchers to address this issue. Sampaio et al. [28]
+created an ANN model based on vibration measurements for the training
+dataset. Additionally, they compare the outcomes of ANN to those of
+Random Forest and Support Vector Machine (SVM), two other ML
+techniques, and discover that ANN is superior. Binding et al. [29]
+created Logistic Regression, XG Boost, and Random Forest models to
+assess the machine’s operational status. By way of choice criteria,
+Random Forest and XG Boost execute far improved as compared to Lo-
+gistic Regression, while all algorithms perform better than one another
+in terms of Receiver Operating Characteristic (ROC). It was developed
+by Falamarzi et al. [30] to track forecast data and measure variation.
+SVM models predict curved segment gauge deviation better than
+ANN models do for straight segment gauge deviation. To recognize
+various rotary equipment scenarios, Biswal and Sabareesh [31] devel-
+oped a Deep Neural Network (hereafter referred to as DNN) and Con-
+volutional Neural Network (hereafter referred to as CNN). It can be used
+to monitor bearings in production lines and enhance the monitoring of
+online conditions in coastal turbines for wind energy. Data mining can
+be used to predict system behaviour based on historical data. A
+model-based approach that heavily relies on analytical models to illus-
+trate how the system operates has a few benefits. In fields with an
+abundance of data, like industrial maintenance, machine learning may
+be used [32]. Actual results, answers based on cloud-based, and new
+algorithms are all becoming more popular.
+Quiroz et al. [33] applied the Random Forest technique for fault
+identification and validity and reliability analysis with turned 98 %
+diagnostic accuracy rate. Yan and Zhou [34] use TF-IDF (Term Fre-
+quency - Inverse Document Frequency) and RF (Radio Frequency) data
+from aircraft speed and torque sensors to create ML models for defect
+prediction. After extracting the features with TF-IDF from the unpro-
+cessed data after the earlier flights, Random Forest had an accurate
+optimistic degree of 66.67 percent and a percentage of false positives of
+0.13 percent. To predict wear and failures, Lee et al. [35] observed the
+spindle motor and cutting machine using data-driven machine learning
+modelling. It has been demonstrated that models using SVM and neural
+networks with artificial intelligence can forecast system health and
+longevity with high accuracy.
+According to Palangi et al. [36], recurrent neural network (RNN) and
+long short-term memory networks (LSTM) algorithms perform well with
+data that is sequential, time-series data with dependencies that last a
+long time, and information from IoT flow sensors. LSTM and Naive
+Bayes models combined, according to the study, may effectively identify
+trends and produce forecasts. The Naive Bayes anomaly detector was
+created by the LSTM model. Learning through deep learning with Cox
+proportional hazard (CoxPHDL) was developed in a research study to
+address the common problems of data flexibility and filtering that occur
+when functional maintenance information is analyzed [37]. The main
+goal was to develop an integrated solution based on dependability
+analysis and deep learning. In Gensler et al. [38] IoT application that
+combines solar panel prediction, the Deep Belief Network (DBN)
+D.K. Yadav et al. Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+2 
+strategy performed well on time series data in addition to LSTM. Car-
+valho et al. [ 39 ] claim that because each recommended ML technique
+works with a different piece of equipment, comparisons are more
+challenging.
+A significant portion of PdM ’ s now revolves around planning main-
+tenance events. Alimian et al. [ 40 ] created a framework for
+cross-organizational integration to assess the improvement of a single
+activity and the coordination of numerous maintenance jobs for pre-
+dictive maintenance decision-making. Even though no algorithm can
+handle all the scenarios that are currently present in a company, Dal-
+zochio et al. [ 41 ] still believe there is room for improvement and a need
+to apply theoretical learning in actual industrial settings. Zhai et al. [ 42 ]
+used unsupervised learning to circumvent the dearth of tagged failure
+data, which was one of the major barriers to the use of PdM in the in-
+dustry. M-IPS the health prognostications model, which stipulates a
+quantitative evaluation of deterioration for a particular manufacturing
+system, enables PdM-IPS. Grating the output with virtual reality, Van
+Oudenhoven et al. [ 43 ] developed a PdM work system model which
+provides a transition between PdM implementation strategies on human
+factors and includes a glimpse of Industry 5.0 vision in PdM through this
+proposed model.
+Oliosi et al. [ 44 ] explored various statistical and probabilistic
+modeling approaches, including HMMs, BNs, GMMs, XGBoost, DBSC,
+PCA, and K-means, for PdM tasks. Additionally, they introduced DNN
+models like LSTM and autoencoders. By analyzing data from multiple
+sensors, they identified deterioration events and predicted potential
+future failures based on interdependencies. Shahin et al. [ 45 ] utilized
+machine learning, deep learning, and deep hybrid learning techniques to
+detect machine failures in a synthetic predictive maintenance dataset,
+suggesting these algorithms can optimize maintenance processes and
+reduce reliability risks. Junjie et al. [ 46 ] created a machine learning
+model to predict Diabetic Nephropathy (DN) diagnosis using various
+techniques. The Random Forest model demonstrated the best predictive
+performance, enabling early diagnosis and screening of DN, with a ROC
+curve area under the curve of 0.912. Bezerra et al. [ 47 ] highlighted the
+significance of managing large amounts of data in Industry 4.0, using a
+few models such as Principal Component Analysis and Random Forest
+techniques to identify machine failure, enhancing production efficiency
+and minimizing disturbance. Derogar et al. [ 48 ] created a design model
+that predicts reinforced concrete slab punching shear using artificial
+intelligence. The model, based on 650 testing, predicted punched shear
+strength, and streamlined design. The study shows that AI can improve
+forecast accuracy and provide structural engineering insights. It needs
+more validation and development to work in different structural con-
+figurations and environments.
+The summary of the systematic review of the literature is as follows:
+• The researchers have put effort into determining the system ’ s RUL,
+but they are yet to build a system that gives early warnings to help
+with better maintenance planning.
+• Even though numerous maintenance strategies and methods have
+been developed, it has been found that there have not been many
+comparisons between them.
+• Implementing the theoretical philosophies that have been developed
+in research need an additional assessment of their usefulness based
+on metrics, for instance, the amount of money and time saved on
+maintenance tasks.
+• Scientific community have also paid a lot of attention to the use of
+machine learning models in PdM. In this way, it has been found that
+industries use many different models, each of which is suggested by a
+different person and put into action by a different group. Neverthe-
+less, the outcomes of the assessment of the exhaustive work revealed
+that there is no algorithm that can handle all the possible situations
+that could happen in a business.
+It was claimed that significant research on predicting maintenance
+requirements had been conducted in recent years. Early prediction plays
+a crucial part in the transition to Industry 4.0, which will ultimately
+bring in a new way of working. It is not possible for a single maintenance
+approach to be the most cost-effective method for all the components
+and machines used in an enterprise. This study attempts to address
+certain gaps present in literature and examines a secondary unbalanced
+dataset and applied various machine learning and deep learning algo-
+rithms to compare the findings to suggest outcomes that may applicable
+in practical setting.
+3. DATA analysis and research methods
+This study develops a data-driven model for predicting machine
+failure and improves the scheduling of asset maintenance. The advan-
+tages of implementing a predictive maintenance strategy for the busi-
+ness are discussed in previous sections. The most crucial factor in
+creating a predictive model is having correct data. What data should be
+gathered using the various condition-based monitoring techniques is up
+to the modeler. The data can be obtained by the modeler either through
+their own data collection efforts or using external data sources like PHM
+(Prognostics and Health Management) or census records. Normally,
+projects applying regression and classification machine learning models
+cannot employ unprocessed data that has not been treated in any way
+because of following facts:
+• The only type of data that the machine algorithms for learning may
+use is data that is numerical in nature.
+• Some neural network algorithms are only operational when the input
+data meets certain requirements.
+• The data may need to be adjusted to eliminate noise from statistical
+analysis and inaccuracies.
+• A variety of techniques can be used to extract complicated nonlinear
+connections from the available information.
+Consequently, pre-processing is necessary before using the raw facts
+for training and testing AI models. In the framework of a predictive
+modelling venture, this step is referred to as "data preparation," although
+it can also be referred to as "data wrangling," "data cleaning," "data pre-
+processing," and "feature engineering." [ 49 ]. In any case, organizing and
+cleaning the data is the goal of this phase that will be used in the sub-
+sequent stages. It ’ s possible that some of these titles would work better
+as subtasks within the larger data research process.
+"Data preparation" is the process of transforming unprocessed in-
+formation to a format more suitable for modelling [ 50 ]. This is
+extremely dependent on the data, the objectives of the project, and the
+methods that will be utilized in the process of modelling this dataset.
+However, there are several tasks that can be employed or investigated
+throughout the data collection stage of a project related to machine
+learning that are thought of as conventional or common. This study uses
+the same dataset as mentioned in the study of Kaushik and Yadav [ 8 ].
+However, this study has done more theoretical work and applied more
+numbers of machine learning algorithms and deep learning models to
+get more insights from the output models.
+General Information about the Dataset
+• The generated dataset has been suggested and provided as a repli-
+cation of actual anticipatory maintenance information discovered in
+a manufacturing environment [ 8 , 51 ]. 10,000 observations are
+recorded as rows and six traits are grouped as divisions in the
+dataset.
+• The dataset contains 10,000 points of data, that are listed as rows and
+contain the 14 attributes mentioned below as columns:
+• A machine ’ s UID, which ranges from 1 to 10,000, is its unique
+identification.
+• Product ID: Low product quality variations are represented by the
+letters L, M, or H (which account for fifty percent of all goods; 30
+D.K. Yadav et al. Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+3 
+percent of all items as medium quality, and 20 percent of all items as
+high, respectively).
+• The air temperature was calculated through a nonlinear process and
+then normalized to a value of about 300 K, with a standard deviation
+of two K.
+• Process temperature [K]: By increasing the air temperature by 10 K,
+the process temperature [K] was created using a one K standard
+deviation nonlinear process.
+• A 2860 W power source with a layer of normally distributed noise on
+top is used to calculate rotational speed (rpm).
+• There is a possibility that the torque [Nm] value will be negative, but
+since the values have a mean of 40 Nm and a standard deviation of
+10, they are normally distributed and don ’ t contain any negative
+values.
+• Tool wear [min]: The standard variants H, M, and L each add 5/3/2
+min to the implemented device ’ s wear time during the operation.
+• If any of the error criteria are correct, this label shows if the machine
+has failed at this data point. Tool Wear Failure (TWF), Heat Dissi-
+pation Failure (HDF), Power Failure (PWF), Overstrain Failure
+(OSF), and Random Failures (RNF) are five different types of failures.
+Fig. 1 expresses the flowchart for data analysis used in this study. It
+starts with data preprocessing and is followed by Exploratory Data
+Analysis (EDA). Data Preprocessing is an iterative process for the
+transformation of the raw data into understandable and useable forms
+and should be done before performing EDA to address inconsistencies, if
+any. It majorly includes data cleaning like checking missing values,
+noisy data, and other inconsistencies. EDA is a technique used to gain
+insights from data. Using a variety of statistical charts and other visu-
+alization techniques, data scientists and analysts investigate a wide
+range of hidden patterns, relationships, and anomalies in the data. In
+EDA, there isn ’ t a standardized set of techniques that are used. It ’ s
+critical to remember that the EDA is an approach to how the data is
+evaluated rather than a set of predetermined procedures. It is intended
+to gain a broad understanding of the information provided without
+making any presumptions about what the data means. Instead of
+deciding whether a particular hypothesis about the data is true, an effort
+will be made to understand what the data is and what it might mean
+before investigation of it begins.
+In order to perform exploratory data analysis using Python as the
+programming language, Python libraries like NumPy, Pandas, and Sea-
+born are necessary. The two libraries ’ Pandas and Seaborn are used in
+the visualization process.
+1. Shape of data: (10,000, 14)
+2. Absent values and the type of statistics in columns: Air tempera-
+ture, process temperature, and torque have the data type "float64,"
+while the rest of the columns have the data type "int64." The data
+type for the type of machine is "object." Additionally, the dataset
+contains no missing value.
+3. Discrete variables count: The target variable is the only other
+discrete variable that counts. The type of machine is the discrete
+variable in the dataset. Fig. 2 shows the machine counts for the
+various types of machines.
+4. Features that are continuous: The dataset contains five continuous
+features. These characteristics include "tool wear," torque, rotating
+speed, "air temperature," and "process temperature."
+5. Every other feature, besides "Torque," is not randomly distributed.
+6. Outliers: All other features are devoid of outliers, apart from
+"rotational speed" and "torque." Fig. 3 illustrates the two features ’
+outliers, which are those that fall outside of the specified lower and
+upper limits.
+7. Fig. 4 depicts the count plot for the training dataset ’ s target var-
+iable, "Machine failure." In the machine failure count plot, the
+number "1 ″ indicates how many times the machine fails, while the
+number "0 ″ indicates how many times it does not fail.
+In some datasets, the target class has an uneven distribution of ob-
+servations, with one class label having many observations and the other
+not. "Imbalanced data" refers to this. It is also possible to refer to data
+collection as "imbalanced" if the distribution of observations for the
+target class varies significantly. Fig. 4 shows that compared to the total
+number of machine failures, there are much fewer machine failures.
+Therefore, it can be said that the dataset is inherently unbalanced.
+Techniques for sampling are recommended to deal with the issue posed
+by datasets that are unbalanced.
+Machine learning techniques either fail when applied to classifica-
+tion data with an uneven distribution of classes or produce results that
+are overly optimistic. This is because many machine learning algorithms
+are made to function best when used with classification data, which
+comprises the same number of instances for a piece of class. In situations
+where this is not the case, algorithms can learn that a small number of
+samples are insignificant and can be ignored to achieve high
+performance.
+The data sampling methodology contains a collection of techniques
+that modify a training dataset to better balance or balance the classifi-
+cation algorithm [ 8 ]. Once the dataset has been rebalanced,
+Fig. 1. Flowchart for the data analysis.
+D.K. Yadav et al. Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+4 
+conventional machine learning methods can be trained directly on the
+modified version of the dataset with no additional modifications
+required. This enables the use of a data preparation technique to resolve
+the issue of imbalanced classification, even with the same amount of
+presence of extremely unbalanced class distributions.
+Up Sampling, Down Sampling, and SMOTE are the three sampling
+methods used for this dataset. From literature, it was determined that
+the SMOTE technique is superior to the other two sampling methods.
+When algorithm names are bandied about, it is simple to get confused
+given that there are simply too many different machine learning pro-
+cedures around and it is assumed that one knows what they are and
+where they belong. There are two ways of considering and classifying
+algorithms that can be encountered in the field.
+• The foremost is a classification of algorithms according to their
+learning mechanisms.
+• The subsequent step involves categorizing algorithms according to
+their shape or application. (Similar to group creatures with similar
+characteristics).
+Machine learning algorithms come in four different flavors: Unsu-
+pervised, reinforcement, semi-supervised, and supervised learning.
+1. Unsupervised Learning: The machine learning algorithm looks for
+patterns in the data in this phase. There is no available solution key
+or human operator to provide instruction. On the contrary, a ma-
+chine analyses the information to find connections and linkages be-
+tween the different variables.
+2. Reinforcement learning is primarily concerned with structured
+learning processes, wherein a predetermined list of acts, variables,
+and final outcomes are provided for use with a machine learning
+algorithm. After the rules have been defined, the machine learning
+algorithm will attempt to explore a variety of alternatives and op-
+portunities while continuously monitoring and evaluating the out-
+comes to identify the most effective solution.
+3. Semi-supervised learning uses simultaneously identified or uniden-
+tified information, just like supervised learning. Data that has been
+given significant tags so that an algorithm can comprehend it is
+referred to as labeled data. On the other hand, unlabeled data lacks
+these labels. This allows machine learning algorithms to discover
+how to label data that was previously unlabeled.
+Fig. 2. Count-plot of the different types of machines.
+Fig. 3. Outliers present in rotational speed and torque.
+Fig. 4. Count plot of the target variable.
+D.K. Yadav et al. Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+5 
+4. In supervised learning, the computer gains knowledge by observing
+its human trainers. It could be a classification task (for discrete target
+variables) or a regression task (for continuous target variables),
+depending on the characteristics of the target variable. The operator
+provides the machine learning algorithm with access to a well-
+known dataset containing favorite inputs, and the algorithm ’ s job
+is to figure out how to access those inputs and outputs using a
+technique that it discovers on its own. While only the operator knows
+the correct problem solutions, the algorithm may recognize patterns
+in the data, acquire knowledge through observations, and generate
+hypotheses. Due to the nature of the dataset, only supervised
+learning was used to develop the model for this study.
+A brief discussion on deep learning and hyperparameters tuning is
+also added for reading purposes.
+3.1. Deep learning
+Artificial neural systems and representational learning are both used
+in the machine learning process known as deep learning. It is also known
+as "deep structured learning." Learning can occur with or without direct
+supervision. It is a set ML technique that abstracts complex-level char-
+acteristics from initial data using multiple layers. The lower levels, for
+instance, are used in the processing of images, may be able to identify
+boundaries, whereas higher layers may be able to identify human-
+important objects, such as letters, numbers, and faces. Each deep
+learning level gains knowledge about transforming its input data into a
+representation that is slightly more abstract and composed of other el-
+ements. It can achieve different levels of abstraction, for instance, by
+varying the number of layers and the dimension of each layer. The LSTM
+technique has been used exclusively to train the model in this work.
+3.2. Hyper-Parameter tuning
+Data scientists and researchers believe that determining the appro-
+priate values for the hyperparameters is the most challenging aspect of
+developing machine learning and artificial intelligence models. When
+developing a model for the first time, it can be challenging to make
+guesses about which parameters to use. Always experiment with the
+hyperparameters to determine which combination of values yields the
+best results. This method is ineffective, however, when applied to high-
+dimensional data, as the training time increases when the quantity of
+iterations grows. Grid Search and Random Search are two of the most
+common and straightforward training techniques used for tuning
+hyperparameters.
+Grid search is a technique that can be used to determine the optimal
+hyperparameter combination for a given model. Since hyperparameters
+are not considered model parameters, it is impossible to choose the best
+setup based on the training data. Model parameters are learned through
+the process of optimizing a loss function during training by employing
+gradient descent or a similar method. Using this method of tuning, a
+model is built for every possible combination of hyperparameters, and
+then each model is analyzed [ 52 ]. The objective of random search is to
+identify the optimal solution for a constructed model by randomly
+combining the hyperparameters. It is comparable to grid search but has
+been shown to yield superior results. When it comes to computers, a
+problem with random search is that it can produce a wide variety of
+results [ 53 ].
+This section represented the findings of the exploratory data analysis
+carried out on the dataset. In addition, it is determined whether the
+dataset contains any null values, and then the datatypes of each of the
+dataset ’ s features are validated. Following this analysis, it was deter-
+mined whether the dataset contains any characteristics that can be
+classified as outliers. Elimination of outliers was accomplished by
+calculating the Interquartile range and then replacing data points that
+exceeded the upper or lower bounds with new ones. In addition, the
+count plot of the target variable was constructed, and it was determined
+that when compared to the number of instances of the majority class, the
+minority class is extremely underrepresented. It indicates many unbal-
+anced fundamentals in the dataset. Before resampling the dataset,
+sampling techniques must be employed. In addition, this section ex-
+plains how various ML-based methods are applied to test the model. The
+algorithm is trained specifically so that it can be evaluated based on its
+performance on previously unseen data.
+4. Development of model
+In the previous section, it was revealed that the dataset used in this
+study contains a significant amount of imbalance and that a variety of
+sampling strategies have been implemented to address the issues asso-
+ciated with the dataset. Guo et al. [ 54 ] state that SMOTE is the most
+effective sampling technique used in this instance to correct the unbal-
+anced data set. After using the SMOTE, a new set of data was produced;
+this data will serve as the basis for the further stages of our algorithm
+training.
+The following are the steps taken during data preparation and
+feature engineering:
+Step 1: Divide database into training and testing datasets : The ratio used
+to split the dataset is 4:1. Therefore, the training dataset has a size of
+(8000, 13) and the testing dataset has a size of (2000, 13). Moving
+forward, only the training dataset can be applied to develop the
+various ML algorithms.
+Step 2: Normalization: Since each attribute has its own distinct range
+of possible values, the min-max scaling method is used to calculate
+the normalization value. To calculate the normalization, the
+following formula is applied:
+X
+n
+=
+X   X
+minimum
+X
+maximum
+  X
+minimum
+Where,
+• X
+n
+= Value of Normalization
+• X
+maximum
+= Maximum value of a feature
+• X
+minimum
+= Minimum value of a feature
+Step 3: Feature Selection : Once the data has been subjected to
+normalization, the next step is to select the features. As shown in
+Fig. 5 , a heatmap of the training data is plotted to accomplish this.
+This will allow us to examine the degree to which the variables are
+correlated with one another.
+Looking at the heatmap, it is evident that ’ Air temperature ’ and
+’ Process temperature ’ have a strong positive correlation with one
+another. In addition, "Torque" and "Rotational speed" have a significant
+inverse relationship. Consequently, one of the characteristics from each
+set is eliminated. In addition, the five distinct breakdown types that have
+occurred will be eliminated, as they are ultimately responsible for the
+failure of the machine, as indicated in the column titled "Machine fail-
+ure." In addition, the ’ UDI ’ feature is removed from the dataset because
+it does not distinguish between any of the machines and is not crucial for
+training the algorithms. Therefore, the total size of the training dataset
+will be (8000, 5) for future research purposes.
+Step 4: Examine the multicollinearity of the characteristics : It refers to
+the existence of a strong correlation between two or more explana-
+tory factors. To confirm this, the Variation Inflation Factor (VIF) is
+calculated for each of the independent variables. The Variance
+Inflation Factor, also known as VIF, is a tool for identifying instances
+D.K. Yadav et al. Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+6 
+of multicollinearity. The variance inflation factors (VIF) show how
+inflated the predicted regression coefficients ’ variance is compared
+to what it would be in the absence of a linear relationship between
+the explanatory variables. Generally, multicollinearity could be
+present and further research is necessary if a value of VIF is above 4
+or if the tolerance level is below 0.25. When the tolerance is smaller
+than 0.1 or the numerical value (VIF), surpasses 10, there is signifi-
+cant multicollinearity that needs to be corrected. Fig. 6 shows the VIF
+number for each independent variable.
+Due to the absence of multicollinearity in the independent variables,
+principal component analysis will not be conducted. Instead, the
+Fig. 5. Correlation heatmap of the attributes.
+Fig. 6. VIF number of independent variables.
+D.K. Yadav et al. Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+7 
+subsequent phases will involve the modelling of different machine-
+learning techniques.
+Step 5: Data Analysis using machine Learning Algorithms: A technique of
+supervised machine learning called classification employs the
+training of datasets to categorize the output into some classes. In the
+classification process, the ML model first picks up knowledge from a
+dataset or set of provided observations before classifying new data
+into a variety of categories or groups. Examples include "Yes" and
+"No", "0 ″ and "1 ″ , "Spam" and "Not Spam", "Cat or Dog", etc. Classes
+are referred to by the term’s categories, objectives, and labels. The
+categorical nature of the objective variable in this study’s corre-
+sponding dataset indicates that the machine will either fail or suc-
+ceed. Because there are only two different answers that might be
+correct, the classification issue is referred to as a Binary Classifier.
+The "Sklearn" Python library will be used to invoke all the metrics
+and algorithms. In addition, the performance measurement of
+executing the code for various algorithms will be compared and
+interpreted. Following this, the AUC score will be utilized to select
+the optimal model. The optimal model is then selected by adjusting
+the hyperparameters.
+This section provided an in-depth discussion of the meticulous step-
+by-step method involved in the development of predictive maintenance
+models.
+5. Results and discussion
+The primary goal of the classification model is to predict whether the
+machine will break down within the allotted time. It is possible to
+forecast the residual usable life of the machine by utilizing the regres-
+sion model; nevertheless, the value of the prediction shifts with the
+deterioration of the asset. They can go down significantly or up signif-
+icantly. However, if many assets need to be tracked, it will not be
+possible to do so on an individual basis for each asset. As a result, a
+classification model has been developed that provides certain early
+warnings with precision and within a predetermined time frame. The
+performance metrics of several machine learning models are displayed
+in Table 1.
+After obtaining the results for the various ML models, the hyper-
+parameters of these models will be modified to attain a greater degree of
+precision and accuracy. As the tuning of hyperparameters was discussed
+in the previous section and it is known that the "Random Search CV"
+method is superior to the other commonly employed parameter opti-
+mization techniques, we can move on to the next step. The effects of
+hyperparameter tuning and optimization on the performance metrics of
+multiple machine learning models are displayed in Table 2.
+Based on the data presented in Table 2, it can be concluded that the
+XG Boost classifier is the most effective of all the algorithms used in the
+modeling process. It is primarily because it has the highest AUC score
+and the highest accuracy among all the models. The ROC curve for an XG
+Boost model illustrates its ability to discriminate between positive and
+negative classes across various threshold values, serving as a pivotal tool
+for evaluating its classification performance. The ROC-curve corre-
+sponding to the XG Boost model is depicted in Fig. 7, and the confusion
+matrix for the XG Boost model applied to the validation dataset is shown
+in Table 3.
+Following the investigation of the machine learning models, the ANN
+and LSTM models of AI are trained. Tables 4-5 detail the ’Accuracy’ of
+the LSTM and ANN models respectively.
+This section examined the effectiveness of several machine learning
+methods. The best result for this unbalanced dataset is provided by XG
+Boost Classifier. In addition, the performance measurement of ANN and
+LSTM were analyzed and presented in Table 4-5. Results also show that
+increasing layers in ANN model could not help in improving accuracy
+and precision with respect to LSTM model.
+6. Conclusions and future work
+Predictive maintenance appears as an essential method for accom-
+plishing the goals of Industrial Revolution 4.0 in the worldwide indus-
+trial sector. The classification models created in this study greatly
+improve maintenance planning by providing early indications of asset
+breakdown. Critical tracking of multiple assets at the same time is now
+possible using these models. However, implementing predictive main-
+tenance presents obstacles, such as addressing dataset imbalance and
+optimizing hyperparameters for greater performance.
+The growing applications of machine learning in all domains of sci-
+ence and technology attempts better prediction through applying well-
+known models and comparing their performances. Though the models
+applied in this study are well known machine learning and deep learning
+models, the focus of this work was on trying to explore the models that
+ensure accurate prediction with an imbalance dataset. The researchers
+can apply the same set of algorithms for predicting machine failure in
+any type of industrial setting. Additionally, this study has developed a
+data-driven model for predicting machine failure and compared results
+from different machine learning algorithms. Practitioners and policy-
+makers can take note that these algorithms require availability of large
+amount of error-free data to predict failure accurately. Many industries
+do not invest in data collection through IOT and sensor devices and face
+frequent breakdowns and interruption in their production lines. Ana-
+lytics of collected manufacturing and operations data can help in saving
+huge amounts of time and money of manufacturing and service
+industries.
+Additionally, while a relevant problem, this paper does not focus on
+exploring why some algorithms and techniques are individually better
+than others. Still, the techniques considered represent the most used
+approaches, and the algorithms used for the meta-learner also provide a
+decent insight into the performance that can be expected.
+Table 1
+Evaluation metrics of a classification model.
+Model Accuracy Precision Recall F1-
+Score
+AUC-
+Score
+Logistic Regression 0.6453 0.4419 0.9625 0.6057 0.5331
+KNN 0.7168 0.6709 0.6831 0.6769 0.7007
+SVC 0.7293 0.7809 0.8027 0.7916 0.7138
+Decision Tree (Gini) 0.6998 0.7713 0.7668 0.769 0.7237
+Decision Tree
+(Entropy)
+0.6998 0.7713 0.7668 0.769 0.7237
+Bagging Classifier 0.8239 0.8859 0.5799 0.701 0.7842
+Adaptive Boosting 0.7786 0.8551 0.8657 0.8604 0.7814
+Gradient Boosting 0.7671 0.852 0.8557 0.8538 0.7817
+Random Forest
+Classifier
+0.7964 0.9054 0.9234 0.9143 0.8202
+XG Boost Classifier 0.848 0.946 0.9466 0.9463 0.8544
+Table 2
+Evaluation metrics of classification model after hyperparameters tuning
+optimization.
+Model Accuracy Precision Recall F1-
+Score
+AUC-
+Score
+Logistic Regression 0.6692 0.4693 0.9976 0.6383 0.5532
+KNN 0.7407 0.6983 0.7182 0.7081 0.7208
+SVC 0.7532 0.8083 0.8378 0.8228 0.7339
+Decision Tree (Gini) 0.7237 0.7987 0.8019 0.8003 0.7438
+Decision Tree
+(Entropy)
+0.7237 0.7987 0.8019 0.8003 0.7438
+Bagging Classifier 0.8478 0.9133 0.615 0.7353 0.8043
+Adaptive Boosting 0.8025 0.8825 0.9008 0.8916 0.8015
+Gradient Boosting 0.7910 0.8794 0.8908 0.8850 0.8018
+Random Forest
+Categorization
+0.8203 0.9328 0.9585 0.9455 0.8403
+XG Boost Classifier 0.8719 0.9734 0.9817 0.97756 0.8745
+D.K. Yadav et al. Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+8 
+The SMOTE approach effectively resolved the imbalance in the
+dataset, allowing for the comparison of different machine-learning
+methods. The results show that the XG Boost Classifier outperforms
+other ML algorithms in terms of performance measures, even after
+hyperparameter adjustment. This emphasizes the significance of
+balancing datasets and fine-tuning model parameters to ensure accurate
+predictions. Furthermore, the use of deep learning models, notably Long
+Short-Term Memory (LSTM), outperforms typical machine learning
+approaches. Although the accuracy of Artificial Neural Networks (ANN)
+initially fell short, layer-based optimization has the potential to
+improve.
+Despite its efficiency, predictive maintenance remains very expen-
+sive due to the use of advanced monitoring technology. Future efforts
+should focus on creating low-cost sensor technologies to reduce
+monitoring costs. Furthermore, future work will focus on optimizing
+hyperparameter tweaking in machine learning models. Furthermore,
+investigating a range of deep learning algorithms other than LSTM could
+improve the modelling process and provide more reliable forecasting
+capabilities. In conclusion, while predictive maintenance provides sig-
+nificant benefits for maintenance planning and efficiency, overcoming
+problems such as dataset imbalance and cost considerations is critical.
+Continued R & D efforts will help to advance and widely adopt predictive
+maintenance solutions in the industry.
+Predicting machine failures through predictive models, one of the
+goals of Industry 4.0, provides timely warnings of potential equipment
+failures and helps organizations to schedule maintenance activities. The
+results of this study demonstrate the effectiveness of machine learning
+and deep learning algorithms in predictive maintenance, enabling pro-
+active maintenance interventions and resource optimization. It also
+contributes to the growing body of research on machine learning ap-
+plications in industrial settings, advancing theoretical understanding
+and paving the way for further refinement of predictive maintenance
+methodologies.
+Compliance with ethical standards
+• The authors declare that they have no known competing financial
+interests or personal relationships that could have appeared to in-
+fluence the work reported in this paper.
+• The authors declare that they have no conflict of interest.
+• This study is not received any financial support from any
+organization.
+Fig. 7. ROC curve of XG Boost model.
+Table 3
+Confusion matrix.
+CONFUSION MATRIX Actual
+Positive Negative
+Predicted Positive 1339 41
+Negative 28 56
+Table 4
+Performance measures of the LSTM model.
+Model Accuracy Precision Recall F1-Score AUC- Score
+LSTM 0.96540 0.97 0.9438 0.957 0.9732
+Table 5
+Performance measures of the ANN model.
+Model Number of layers Number of neurons Accuracy Precision Recall F1-Score AUC- Score
+ANN 5 16 0.6491 0.5620 0.6836 0.6179 0.6730
+10 32 0.5524 0.4682 0.5510 0.5062 0.6018
+16 64 0.6520 0.5832 0.6940 0.8228 0.6826
+D.K. Yadav et al. Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+9 
+• This study does not involve human participants and/or animals for
+data.
+CRediT authorship contribution statement
+Devendra K. Yadav: Writing – review & editing, Validation, Su-
+pervision, Project administration. Aditya Kaushik: Resources, Meth-
+odology, Formal analysis, Data curation. Nidhi Yadav: Writing – review
+& editing.
+Declaration of competing interest
+The author hereby affirms that there are no financial interests or
+affiliations with any organisations, institutions, or enterprises that may
+derive potential benefits from the dissemination of this research work.
+There are no financial conflicts of interest that need to be disclosed
+Data availability
+Data will be made available on request.
+References
+[1] R. Kunst, L. Avila, A. Binotto, E. Pignaton, S. Bampi, J. Rochol, Improving devices
+communication in Industry 4.0 wireless networks, Eng. Appl. Artif. Intell. 83
+(2019) 1 – 12 .
+[2] V. Tessoni, M. Amoretti, Advanced statistical and machine learning methods for
+multi-step multivariate time series forecasting in predictive maintenance, Procedia
+Comput. Sci. 200 (2022) 748 – 757 .
+[3] S. Vollert, M. Atzmueller, A. Theissler, Interpretable Machine Learning: a brief
+survey from the predictive maintenance perspective, in: 2021 26th IEEE
+international conference on emerging technologies and factory automation (ETFA),
+IEEE, 2021, pp. 01 – 08 .
+[4] P. O ’ Donovan, C. Gallagher, K. Leahy, D.T O ’ Sullivan, A comparison of fog and
+cloud computing cyber-physical interfaces for Industry 4.0 real-time embedded
+machine learning engineering applications, Comput. Ind. 110 (2019) 12 – 35 .
+[5] L. Romeo, J. Loncarski, M. Paolanti, G. Bocchini, A. Mancini, E. Frontoni, Machine
+learning-based design support system for the prediction of heterogeneous machine
+parameters in industry 4.0, Expert. Syst. Appl. 140 (2020) 112869 .
+[6] H. Boyes, B. Hallaq, J. Cunningham, T. Watson, The industrial internet of Things
+(IIoT): an analysis framework, Comput. Ind. 101 (2018) 1 – 12 .
+[7] S. Arena, E. Florian, I. Zennaro, P.F. Orrù, F. Sgarbossa, A novel decision support
+system for managing predictive maintenance strategies based on machine learning
+approaches, Saf. Sci. 146 (2022) 43 – 54 .
+[8] A. Kaushik, D.K. Yadav, Analysing Failure Prediction for a Manufacturing Firm
+Using Machine Learning Algorithms, in: Advanced Engineering Optimization
+Through Intelligent Techniques: Select Proceedings of AEOTIT 2022, Springer
+Nature Singapore, Singapore, 2023, pp. 457 – 463, https://doi.org/10.1007/978-
+981-19-9285-8_44 .
+[9] P. Adhikari, H.G. Rao, M. Buderath, Machine learning based data driven
+diagnostics & prognostics framework for aircraft predictive maintenance, in:
+Proceedings of the 10th International Symposium on NDT in Aerospace, Dresden,
+Germany, 2018, pp. 24 – 26 .
+[10] C. Zhou, C.K. Tham, Graphel: a graph-based ensemble learning method for
+distributed diagnostics and prognostics in the industrial internet of things, in: 2018
+IEEE 24th International Conference on parallel and Distributed Systems (ICPADS),
+IEEE, 2018, pp. 903 – 909 .
+[11] Z. Liu, C. Jin, W. Jin, J. Lee, Z. Zhang, C. Peng, G. Xu, Industrial AI enabled
+prognostics for high-speed railway systems, in: 2018 IEEE international conference
+on prognostics and health management (ICPHM), IEEE, 2018, pp. 1 – 8 .
+[12] C.M. Carbery, R. Woods, A.H. Marshall, A bayesian network based learning system
+for modelling faults in large-scale manufacturing, in: IEEE International
+Conference on Industrial Technology (ICIT), 2018, pp. 1357 – 1362 .
+[13] K. Wang, Y. Wang, How AI affects the future predictive maintenance: a primer of
+deep learning, in: International Workshop of Advanced Manufacturing and
+Automation 32, Springer, 2017, pp. 1 – 9 .
+[14] Z. Balogh, E. Gatial, J. Barbosa, P. Leit ˜ao, T. Matejka, Reference architecture for a
+collaborative predictive platform for smart maintenance in manufacturing, in:
+22nd International Conference on Intelligent Engineering Systems (INES), IEEE,
+2018, pp. 000299 – 000304 .
+[15] A. Bousdekis, G. Mentzas, K. Hribernik, M. Lewandowski, M. von Stietencron, K.-
+D. Thoben, A unified architecture for proactive maintenance in manufacturing
+enterprises. Enterprise Interoperability VIII, Springer, 2019, pp. 307 – 317 .
+[16] L.L. Ferreira, M. Albano, J. Silva, D. Martinho, G. Marreiros, G. Di Orio, H. Ferreira,
+A pilot for proactive maintenance in industry 4.0, in: 2017 IEEE 13th International
+Workshop on Factory Communication Systems (WFCS), IEEE, 2017, pp. 1 – 9 .
+[17] Y. Xu, Y. Sun, X. Liu, Y. Zheng, A digital-twin-assisted fault diagnosis using deep
+transfer learning, IEEe Access. 7 (2018) 990 – 999 .
+[18] T. da Cunha Mattos, F.M. Santoro, K. Revoredo, V.T. Nunes, A formal
+representation for context-aware business processes, Comput. Ind. 65 (8) (2014)
+1193 – 1214 .
+[19] B. Schmidt, L. Wang, Cloud-enhanced predictive maintenance, Int. J. Adv. Manuf.
+Technol. 99 (2018) 5 – 13 .
+[20] B. Schmidt, L. Wang, Predictive Maintenance of Machine Tool Linear Axes: a Case
+from Manufacturing Industry, Proc. Manuf. 17 (2018) 118 – 125 .
+[21] S.H. Ding, S. Kamaruddin, Maintenance policy optimization — Literature review
+and directions, Int. J. Adv. Manuf. Technol. 76 (2015) 1263 – 1283 .
+[22] G.A. Susto, A. Beghi, Dealing with time-series data in predictive maintenance
+problems, in: 2016 IEEE 21st International Conference on Emerging Technologies
+and Factory Automation (ETFA), IEEE, 2016, pp. 1 – 4 .
+[23] I.J. Jeong, V.J. Leon, J.R. Villalobos, Integrated decision-support system for
+diagnosis, maintenance planning, and scheduling of manufacturing systems, Int. J.
+Prod. Res. 45 (2) (2007) 267 – 285 .
+[24] S.A. Lewis, T.G. Edwards, Smart sensors and system health management tools for
+avionics and mechanical systems, in: 16th DASC. AIAA/IEEE Digital Avionics
+Systems Conference. Reflections to the Future. Proceedings 2, IEEE, 1997, p. 8. -5 .
+[25] A. Ucar, M. Karakose, N. Kırımça, Artificial intelligence for predictive maintenance
+applications: key components, trustworthiness, and future trends, Appl. Sci. 14 (2)
+(2024) 898, https://doi.org/10.3390/app14020898 .
+[26] D.F. Hesser, B. Markert, Tool wear monitoring of a retrofitted CNC milling machine
+using artificial neural networks, Manuf. Lett. 19 (2019) 1 – 4 .
+[27] A. Kamariotis, K. Tatsis, E. Chatzi, K. Goebel, D. Straub, A metric for assessing and
+optimizing data-driven prognostic algorithms for predictive maintenance, Reliab.
+Eng. Syst. Saf. 242 (2024) 109723 .
+[28] S.G. Sampaio, A.R.D.A. Vallim Filho, L. Santos da Silva, L. Augusto da Silva,
+Prediction of motor failure time using an artificial neural network, Sensors 19 (19)
+(2019) 4342 .
+[29] Binding, A., Dykeman, N., & Pang, S., 2019. Machine Learning Predictive
+Maintenance on Data in the Wild. In Proceedings of the IEEE 5th World Forum on
+Internet of Things (WF-IoT) , Limerick, Ireland, pp. 507 – 512.
+[30] A. Falamarzi, S. Moridpour, M. Nazem, S. Cheraghi, Prediction of tram track gauge
+deviation using artificial neural network and support vector regression, Australian
+Journal of Civil Engineering 17 (1) (2019) 63 – 71 .
+[31] S. Biswal, G.R. Sabareesh, Design and development of a wind turbine test rig for
+condition monitoring studies, in: Proceedings of the 2015 International Conference
+on Industrial Instrumentation and Control (ICIC), Pune, India, 28 – 30 May 2015,
+2015, pp. 891 – 896 .
+[32] M. Paolanti, M. Sturari, A. Mancini, P. Zingaretti, E. Frontoni, Mobile robot for
+retail surveying and inventory using visual and textual analysis of monocular
+pictures based on deep learning, in: 2017 European Conference on Mobile Robots
+(ECMR), IEEE, 2017, pp. 1 – 6 .
+[33] J.C. Quiroz, N. Mariun, M.R. Mehrjou, M. Izadi, N. Misron, M.A.M. Radzi, Fault
+detection of broken rotor bar in LS-PMSM using random forests, Measurement 116
+(2018) 273 – 280 .
+[34] W. Yan, J.H. Zhou, Predictive modeling of aircraft systems failure using term
+frequency-inverse document frequency and random forest, in: Proceedings of the
+2017 IEEE International Conference on Industrial Engineering and Engineering
+Management (IEEM) 9, 2017, pp. 828 – 831 .
+[35] W.J. Lee, H. Wu, H. Yun, H. Kim, M.B.G. Jun, J.W. Sutherland, Predictive
+Maintenance of Machine Tool Systems Using Artificial Intelligence Techniques
+Applied to Machine Condition Data, Procedia CIRP. 80 (2019) 506 – 511 .
+[36] H. Palangi, L. Deng, Y. Shen, J. Gao, X. He, J. Chen, R. Ward, Deep sentence
+embedding using long short-term memory networks: analysis and application to
+information retrieval, IEEE/ACM. Trans. Audio Speech. Lang. Process. 24 (4)
+(2016) 694 – 707 .
+[37] H. Chen, A. Chen, L. Xu, H. Xie, H. Qiao, Q. Lin, K. Cai, A deep learning CNN
+architecture applied in smart near-infrared analysis of water pollution for
+agricultural irrigation resources, Agric. Water. Manage 240 (2020) 106303 .
+[38] A. Gensler, B. Sick, S. Vogt, A review of deterministic error scores and
+normalization techniques for power forecasting algorithms, Proceddings of 2016
+IEEE Symposium Series on Computational Intelligence (SSCI) IEEE (2016) 1-9.
+[39] T.P. Carvalho, F.A. Soares, R. Vita, R.D.P. Francisco, J.P. Basto, A systematic
+literature review of machine learning methods applied to predictive maintenance,
+Comput. Industrial Eng. 137 (2019) 106024 .
+[40] M. Alimian, V. Ghezavati, R. Tavakkoli-Moghaddam, New integration of
+preventive maintenance and production planning with cell formation and group
+scheduling for dynamic cellular manufacturing systems, J. Manuf. Syst. 56 (2020)
+341 – 358 .
+[41] J. Dalzochio, R. Kunst, E. Pignaton, A. Binotto, S. Sanyal, J. Favilla, J. Barbosa,
+Machine learning and reasoning for predictive maintenance in Industry 4.0:
+current status and challenges, Comput. Ind. 12 (2020) 103 – 118 .
+[42] S. Zhai, B. Gehring, G. Reinhart, Enabling predictive maintenance integrated
+production scheduling by operation-specific health prognostics with generative
+deep learning, J. Manuf. Syst. 61 (2021) 830 – 855 .
+[43] B. Van Oudenhoven, P. Van de Calseyde, R. Basten, E. Demerouti, Predictive
+maintenance for industry 5.0: behavioural inquiries from a work system
+perspective, Int. J. Prod. Res. 61 (22) (2023) 7846 – 7865 .
+[44] E. Oliosi, G. Calzavara, G. Ferrari, On Sensor Data Clustering for Machine Status
+Monitoring and Its Application to Predictive Maintenance, IEEE Sens. J. 23 (2023)
+9620 – 9639 .
+[45] M. Shahin, F.F. Chen, A. Hosseinzadeh, N. Zand, Using machine learning and deep
+learning algorithms for downtime minimization in manufacturing systems: an early
+failure detection diagnostic service, Int. J. Adv. Manuf. Technol. 128 (9 – 10) (2023)
+3857 – 3883, https://doi.org/10.1007/s00170-023-12020-w .
+D.K. Yadav et al. Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+10 
+[46] J. Junjie, S. Wenhao, W. Yuan, A risk assessment approach for road collapse along
+tunnels based on an improved entropy weight method and K-means cluster
+algorithm, Ain Shams Engineering Journal (2024) 102805.
+[47] F.E. Bezerra, G.C.D. Oliveira Neto, G.M. Cervi, R. Francesconi Mazetto, A.M.
+D. Faria, M. Vido, M. Amorim, Impacts of Feature Selection on Predicting Machine
+Failures by Machine Learning Algorithms, Appl. Sci. 14 (8) (2024) 3337.
+[48] S. Derogar, C. Ince, H.Y. Yatbaz, E. Ever, Prediction of punching shear strength of
+slab-column connections: a comprehensive evaluation of machine learning and
+deep learning based approaches, Mech. Adv. Mater. Struct. 31 (6) (2024)
+1272–1290.
+[49] Ghoneim, S. (2019). 5 Steps to correctly prepare your data for your machine
+learning model. Available at: https://towardsdatascience.com/5-steps-to-correctly-
+prep-your-data-for-your-machine-learning-model-c06c24762b73.
+[50] Shin, T. (2020). How to prepare your data for your machine learning model.
+Available at: https://towardsdatascience.com/how-to-prepare-your-data-for-yo
+ur-machine-learning-model-b4c9fd4e7ea.
+[51] Matzka, S. 2020. “AI4I 2020 Predictive Maintenance Dataset”, www.explorate.ai
+/dataset/predictiveMaintenanceDataset.csv, submitted to UCI Machine Learning
+Repository, 2020.
+[52] Jordan, J., (2017). Hyperparameter tuning for machine learning models. Available
+at: https://www.jeremyjordan.me/hyperparameter-tuning/.
+[53] Shahul, E.S., & Bajaj, A., 2022. Hyperparameter tuning in python: a complete
+guide. Available at: https://neptune.ai/blog/hyperparameter-tuning-in-pyth
+on-complete-guide.
+[54] S. Guo, Y. Liu, R. Chen, X. Sun, X. Wang, Improved SMOTE algorithm to deal with
+imbalanced activity classes in smart homes, Neural Process. Lett. 50 (2019)
+1503–1526.
+D.K. Yadav et al. Sustainable Manufacturing and Service Economics 3 (2024) 100029 
+11 
